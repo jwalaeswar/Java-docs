@@ -64,7 +64,7 @@ jobs:
           cat README-NEW.md
 
       - name: Upload HTML files as artifacts
-        uses: actions/upload-artifact@v
+        uses: actions/upload-artifact@v3
         with:
           name: html-output
           path: '**/*.html'

@@ -1,51 +1,68 @@
 name: Generate README
+
 on:
   push:
-    branches: 
-      - '*'
+    branches:
+      - '*'  # Trigger on push to any branch
+
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v2
-    - name: Install Ruby
-      run: sudo apt install ruby-full
-    - name: Install Asciidoctor
-      run: sudo gem install asciidoctor
-    - name: Create HTMLs
-      run: |
-        > README-NEW.md
-        echo "# Contents" >> README-NEW.md
-        for dir in $(find . -maxdepth 2 -type f -name "*.adoc" -exec dirname {} \; | sort -u); do
-          if [[ $(echo "$dir" | grep -o '/' | wc -l) -eq 1 ]]; then
-            echo "Processing directory: $dir"
+      - name: Checkout Repository
+        uses: actions/checkout@v2
 
-            master_adoc="$dir/master.adoc"
-            echo "=  $dir" > "$master_adoc"
+      - name: Install Ruby
+        run: sudo apt install ruby-full
 
-            for file in $(find "$dir" -name "*.adoc"); do
-              echo "include::${file}[]" >> "$master_adoc"
-              echo "" >> "$master_adoc"
-            done
+      - name: Install Asciidoctor
+        run: |
+          sudo gem install asciidoctor  # Install the Asciidoctor gem
 
-            asciidoctor "$master_adoc"
+      - name: Create HTMLs
+        run: |
+          # Create or clear README-NEW.md
+          > README-NEW.md
+          echo "# Contents" >> README-NEW.md
 
-            rm "$master_adoc"
+          # Iterate over directories containing .adoc files (up to maxdepth 2)
+          for dir in $(find . -maxdepth 2 -type f -name "*.adoc" -exec dirname {} \; | sort -u); do
+            # Only process directories one level deep in the repo
+            if [[ $(echo "$dir" | grep -o '/' | wc -l) -eq 1 ]]; then
+              echo "Processing directory: $dir"
 
-            echo "## [$dir] (~/$dir/master.html)" >> README-NEW.md
+              # Create master.adoc file
+              master_adoc="$dir/master.adoc"
+              echo "=  $dir" > "$master_adoc"  # Add a title to the master file
 
-            cd $dir
-            asciidoctor **/*.adoc
+              # Append all .adoc files in the directory to the master.adoc file
+              for file in $(find "$dir" -name "*.adoc"); do
+                echo "include::${file}[]" >> "$master_adoc"
+                echo "" >> "$master_adoc"
+              done
 
-            for html_file in $(ls "$dir"/*.html | sort); do
-              if [ -f "$html_file" ]; then
-                echo "### [$html_file](~/$dir/$html_file)" >> README-NEW.md
-              fi
-            done
-          fi
-        done
-        cat README-NEW.md
+              # Generate HTML from master.adoc
+              asciidoctor "$master_adoc"
+
+              # Remove the temporary master.adoc file after processing
+              rm "$master_adoc"
+
+              # Add section for this directory in README-NEW.md
+              echo "## [$dir] (~/$dir/master.html)" >> README-NEW.md
+
+              # Find all HTML files in the directory and append them to README-NEW.md
+              for html_file in $(find "$dir" -name "*.html" | sort); do
+                if [ -f "$html_file" ]; then
+                  echo "### [$html_file](~/$html_file)" >> README-NEW.md
+                fi
+              done
+            fi
+          done
+
+          # Print the generated README content for debugging
+          cat README-NEW.md
+
       - name: Upload HTML files as artifacts
         uses: actions/upload-artifact@v2
         with:

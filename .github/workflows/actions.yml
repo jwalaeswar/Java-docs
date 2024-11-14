@@ -41,8 +41,9 @@ jobs:
               # Append all .adoc files in the directory to the master.adoc file
               for file in $(find "$dir" -maxdepth 1 -type f -name "*.adoc" | sort -u); do
                 if ! echo "$file" | grep -q "master.adoc"; then
+                  cleaned_dir=$(basename "#dir")
                   cleaned_file=$(basename "$file")
-                  echo "include::$cleaned_file[]" >> "$master_adoc"
+                  echo "include::$cleaned_dir/cleaned_file[]" >> "$master_adoc"
                 fi
               done
               cat  "$dir/master.adoc"

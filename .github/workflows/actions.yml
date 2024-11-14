@@ -14,8 +14,7 @@ jobs:
     - name: Install Asciidoctor
       run: sudo gem install asciidoctor
     - name: Create HTMLs
-      run: | 
-        cd ~
+      run: |
         > README-NEW.md
         echo "# Contents" >> README-NEW.md
         for dir in $(find . -maxdepth 2 -type f -name "*.adoc" -exec dirname {} \; | sort -u); do

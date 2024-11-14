@@ -15,8 +15,8 @@ jobs:
           ruby-version: '3.0'
 
       - name: Install Asciidoctor
-        run: |
-          gem install asciidoctor
+        run: gem install asciidoctor
+        
       - name: Create HTMLs
         run: | 
           cd ~

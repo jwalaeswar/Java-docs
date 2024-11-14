@@ -5,7 +5,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.23">
-<title>Basic Syntax</title>
+<meta name="author" content="== Memory Management">
+<title>2.GettingDeeper</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -436,45 +437,423 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article">
 <div id="header">
+<h1>2.GettingDeeper</h1>
+<div class="details">
+<span id="author" class="author">== Memory Management</span><br>
+<span id="revdate">---</span>
+</div>
 </div>
 <div id="content">
-<div class="sect1">
-<h2 id="_basic_syntax">Basic Syntax</h2>
+<div id="preamble">
 <div class="sectionbody">
+<div class="paragraph">
+<p>In Java, memory management is the process of allocation and de-allocation of objects, called Memory management. Java does memory management automatically. Java uses an automatic memory management system called a <strong>garbage collector</strong>. Thus, we are not required to implement memory management logic in our application. Java memory management divides into two major parts:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>JVM Memory Structure</p>
+</li>
+<li>
+<p>Working of the Garbage Collector</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_jvm_memory_structure">JVM Memory Structure</h3>
 <hr>
 <div class="paragraph">
-<p>Data Types are divided into two group</p>
+<p>JVM creates various run time data areas in a heap. These areas are used during the program execution. The memory areas are destroyed when JVM exits, whereas the data areas are destroyed when the thread exits.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="src/memory-management-in-java.png" alt="memory management in java">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_method_area">Method Area</h3>
+<div class="paragraph">
+<p>Method Area is a part of the heap memory which is shared among all the threads. It creates when the JVM starts up. It is used to store class structure, superclass name, interface name, and constructors. The JVM stores the following kinds of information in the method area:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A Fully qualified name of a type (ex: String)</p>
+</li>
+<li>
+<p>The type&#8217;s modifiers</p>
+</li>
+<li>
+<p>Type&#8217;s direct superclass name</p>
+</li>
+<li>
+<p>A structured list of the fully qualified names of super interfaces.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_heap_area">Heap Area</h3>
+<div class="paragraph">
+<p>Heap stores the actual objects. It creates when the JVM starts up. The user can control the heap if needed. It can be of fixed or dynamic size. When we use a new keyword, the JVM creates an instance for the object in a heap. While the reference of that object stores in the stack. There exists only one heap for each running JVM process. When heap becomes full, the garbage is collected.</p>
 </div>
 <div class="paragraph">
-<p>Primitive - byte,short,int,long,float,double,boolean and char
-Non-Primitive - String, Arrays, Classes, Enums and Records</p>
+<p>For example:</p>
 </div>
 <div class="paragraph">
-<p>An enum type is a special data type that enables for a variable to be a set of predefined constants.</p>
+<p><code>
+StringBuilder sb = new StringBuilder();
+</code></p>
+</div>
+<div class="paragraph">
+<p>The above statement creates an object of the StringBuilder class. The object allocates to the heap, and the reference sb allocates to stack. Heap is divided into the following parts:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Young generation</p>
+</li>
+<li>
+<p>Survivor space</p>
+</li>
+<li>
+<p>Old generation</p>
+</li>
+<li>
+<p>Permanent generation</p>
+</li>
+<li>
+<p>Code Cache</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="_young_generation">Young Generation</h4>
+<div class="paragraph">
+<p>The Young Generation is the section of Java heap memory where new objects are initially allocated. When this area becomes full, a Minor Garbage Collection (GC) is triggered. The Young Generation is structured into the following three parts:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Eden Memory Space:</strong> It is the primary location for allocating newest objects.</p>
+</li>
+<li>
+<p><strong>Survivor Spaces:</strong> Upon filling up, the Eden space triggers a Minor GC, during which objects that are still in use are relocated to one of the survivor spaces. As a result, one survivor space is always maintained empty to accommodate these surviving objects in future collections.</p>
+</li>
+<li>
+<p><strong>Object Promotion:</strong> Objects that persist through multiple garbage collection cycles in the survivor spaces are eventually promoted to the Old Generation. Promotion typically occurs after the objects have reached a certain age, determined by a preset threshold.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_old_generation">Old Generation</h4>
+<div class="paragraph">
+<p>The Old Generation, also known as the Tenured Generation, is a key area in Java&#8217;s heap memory where long-lived objects are stored. It comes into play when objects survive multiple garbage collection cycles in the Young Generation. Unlike the Young Generation, the Old Generation consists of a single, continuous memory space.</p>
+</div>
+<div class="paragraph">
+<p>Garbage Collection (GC) in the Old Generation:</p>
+</div>
+<div class="paragraph">
+<p><strong>Major GC/ Full GC:</strong> These are more comprehensive and time-consuming events that occur when the Old Generation is full. They clean out both the Young and Old Generations and may involve memory compaction to optimize space usage, often leading to longer pause times.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_permanent_generation">Permanent Generation</h4>
+<div class="paragraph">
+<p>The Permanent Generation, often referred to as Perm Gen. It is a dedicated area in the Java Virtual Machine (JVM) that holds metadata about the application&#8217;s classes and methods. It is important to note that Perm Gen is separate from the Java Heap, where instance data is stored.</p>
+</div>
+<div class="paragraph">
+<p>This region is dynamically filled by the JVM during runtime, depending on the classes that are actively used by the application, and it includes classes and methods from the Java SE libraries as well. Objects stored in Perm Gen are subject to garbage collection during a full garbage collection cycle, allowing for the clean-up of class and method metadata that is no longer needed.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_java_heap_memory_switches">Java Heap Memory Switches</h4>
+<div class="sect4">
+<h5 id="_1_xms">1. -xms</h5>
+<div class="paragraph">
+<p><strong>Description:</strong> It sets the initial heap size when the JVM starts. It is the amount of memory the JVM attempts to allocate for its heap at startup.</p>
+</div>
+<div class="paragraph">
+<p><strong>Example:</strong> <strong>-xms512m</strong> starts the JVM with an initial heap size of 512 megabytes.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_2_xmx">2. -xmx</h5>
+<div class="paragraph">
+<p><strong>Description:</strong> Sets the maximum heap size. It limits the maximum amount of memory that the JVM can allocate for its heap, affecting how much memory your Java application can use for all its objects and processes.</p>
+</div>
+<div class="paragraph">
+<p><strong>Example: -xmx2g</strong> caps the heap size at 2 gigabytes.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_3_xmn">3. -xmn</h5>
+<div class="paragraph">
+<p><strong>Description:</strong> It sets the size of the Young Generation. The remainder of the heap (outside of the Young Generation) is dedicated to the Old Generation.</p>
+</div>
+<div class="paragraph">
+<p><strong>Example: -xmn256m</strong> allocates 256 megabytes to the Young Generation.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_4_xxpermgen">4. -XX:PermGen</h5>
+<div class="paragraph">
+<p><strong>Description:</strong> Sets the initial size of the Permanent Generation, which is used to store the JVM&#8217;s metadata, such as classes and method data. Note that this setting is relevant only for JVMs before Java 8, after which PermGen was replaced by Metaspace.</p>
+</div>
+<div class="paragraph">
+<p><strong>Example: -XX:PermGen=128m</strong> sets the initial size of PermGen to 128 megabytes.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_5_xxmaxpermgen">5. -XX:MaxPermGen</h5>
+<div class="paragraph">
+<p><strong>Description:</strong> Sets the maximum size of the Permanent Generation. Controlling this limit is crucial to prevent OutOfMemoryError that occurs when the JVM runs out of space in PermGen.</p>
+</div>
+<div class="paragraph">
+<p><strong>Example: -XX:MaxPermGen=256m</strong> caps the PermGen size at 256 megabytes.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_6_xxsurvivorratio">6. -XX:SurvivorRatio</h5>
+<div class="paragraph">
+<p><strong>Description:</strong> it specifies the ratio between Eden and Survivor spaces within the Young Generation. If the Young Generation size is 10m and the Survivor Ratio is set to 2, then 5m will be reserved for the Eden Space, and 2.5m each will be reserved for the two Survivor spaces.</p>
+</div>
+<div class="paragraph">
+<p><strong>Example: -XX:SurvivorRatio=6</strong> means the Eden space will be six times the size of each Survivor space.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_7_xxnewratio">7. -XX:NewRatio</h5>
+<div class="paragraph">
+<p><strong>Description:</strong> It provides a ratio of Old to New (Young) Generation sizes. A ratio of 2 means the Old Generation is twice the size of the Young Generation.</p>
+</div>
+<div class="paragraph">
+<p><strong>Example: -XX:NewRatio=3</strong> sets the Old Generation to three times the size of the Young Generation.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_reference_type">Reference Type</h4>
+<div class="paragraph">
+<p>There are four types of references: Strong, Weak, Soft, and Phantom reference. The difference among the types of references is that the objects on the heap they refer to are eligible for garbage collecting under the different criteria.</p>
+</div>
+<div class="paragraph">
+<p><strong>Strong reference:</strong> It is very simple as we use it in our daily programming. Any object which has Strong reference attached to it is not eligible for garbage collection. We can create a strong reference by using the following statement:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>public enum Day {
-    SUNDAY, MONDAY, TUESDAY, WEDNESDAY,
-    THURSDAY, FRIDAY, SATURDAY
-}</code></pre>
+<pre class="highlight"><code class="language-java" data-lang="java">StringBuilder sb = new StringBuilder();</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Records are immutable data classes that require only the type and name of fields.
-The equals, hashCode, and toString methods, as well as the private, final fields and public constructor, are generated by the Java compiler.</p>
+<p><strong>Weak Reference:</strong> It does not survive after the next garbage collection process. If we are not sure when the data will be requested again, in this condition, we can create a weak reference to it. In case, if the garbage collector processes, it destroys the object. When we again try to retrieve that object, we get a null value. It is defined in java.lang.ref.WeakReference class. We can create a weak reference by using the following statement:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>public record Person (String name, String address) {}</code></pre>
+<pre class="highlight"><code class="language-java" data-lang="java">WeakReference&lt;StringBuilder&gt; reference = new WeakReference&lt;&gt;(new StringBuilder());</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p><strong>Soft Reference:</strong> It is collected when the application is running low on memory. The garbage collector does not collect the softly reachable objects. All soft referenced objects are collected before it throws an OutOfMemoryError. We can create a soft reference by using the following statement:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">SoftReference&lt;StringBuilder&gt; reference = new SoftReference&lt;&gt;(new StringBuilder());</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Phantom Reference:</strong> It is available in java.lang.ref package. It is defined in java.lang.ref.PhantomReference class. The object which has only phantom reference pointing them can be collected whenever garbage collector wants to collect. We can create a phantom reference by using the following statement:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">PhantomReference&lt;StringBuilder&gt; reference = new PhantomReference&lt;&gt;(new StringBuilder());</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_stack_area">Stack Area</h3>
+<div class="paragraph">
+<p>Stack Area generates when a thread creates. It can be of either fixed or dynamic size. The stack memory is allocated per thread. It is used to store data and partial results. It contains references to heap objects. It also holds the value itself rather than a reference to an object from the heap. The variables which are stored in the stack have certain visibility, called scope.</p>
+</div>
+<div class="paragraph">
+<p><strong>Stack Frame:</strong> Stack frame is a data structure that contains the thread&#8217;s data. Thread data represents the state of the thread in the current method.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>It is used to store partial results and data. It also performs dynamic linking, values return by methods and dispatch exceptions.</p>
+</li>
+<li>
+<p>When a method invokes, a new frame creates. It destroys the frame when the invocation of the method completes.</p>
+</li>
+<li>
+<p>Each frame contains own Local Variable Array (LVA), Operand Stack (OS), and Frame Data (FD).</p>
+</li>
+<li>
+<p>The sizes of LVA, OS, and FD determined at compile time.</p>
+</li>
+<li>
+<p>Only one frame (the frame for executing method) is active at any point in a given thread of control. The frame is called the current frame, and its method is known as the current method. The class of method is called the current class.</p>
+</li>
+<li>
+<p>The frame stops the current method, if its method invokes another method or if the method completes.</p>
+</li>
+<li>
+<p>The frame created by a thread is local to that thread and cannot be referenced by any other thread.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_native_method_stack">Native Method Stack</h3>
+<div class="paragraph">
+<p>It is also known as C stack. It is a stack for native code written in a language other than Java. Java Native Interface (JNI) calls the native stack. The performance of the native stack depends on the OS.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_pc_registers">PC Registers</h3>
+<div class="paragraph">
+<p>Each thread has a Program Counter (PC) register associated with it. PC register stores the return address or a native pointer. It also contains the address of the JVM instructions currently being executed.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_working_of_garbage_collector">Working of Garbage Collector</h3>
+<div class="sect3">
+<h4 id="_garbage_collector_overview">Garbage Collector Overview</h4>
+<div class="paragraph">
+<p>When a program executes in Java, it uses memory in different ways. The heap is a part of memory where objects live. It iss the only part of memory that involved in the garbage collection process. It is also known as garbage collectible heap. All the garbage collection makes sure that the heap has as much free space as possible. The function of the garbage collector is to find and delete the objects that cannot be reached.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_object_allocation">Object Allocation</h4>
+<div class="paragraph">
+<p>When an object allocates, the JRockit JVM checks the size of the object. It distinguishes between small and large objects. The small and large size depends on the JVM version, heap size, garbage collection strategy, and platform used. The size of an object is usually between 2 to 128 KB.</p>
+</div>
+<div class="paragraph">
+<p>The small objects are stored in Thread Local Area (TLA) which is a free chunk of the heap. TLA does not synchronize with other threads. When TLA becomes full, it requests for new TLA.</p>
+</div>
+<div class="paragraph">
+<p>On the other hand, large objects that do not fit inside the TLA directly allocated into the heap. If a thread is using the young space, it directly stored in the old space. The large object requires more synchronization between the threads.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_types_of_garbage_collection">Types of Garbage Collection</h3>
+<div class="paragraph">
+<p>There are five types of garbage collection are as follows:</p>
+</div>
+<div class="paragraph">
+<p><strong>Serial GC:</strong> It uses the mark and sweeps approach for young and old generations, which is minor and major GC.</p>
+</div>
+<div class="paragraph">
+<p><strong>Parallel GC:</strong> It is similar to serial GC except that, it spawns N (the number of CPU cores in the system) threads for young generation garbage collection.</p>
+</div>
+<div class="paragraph">
+<p><strong>Parallel Old GC:</strong> It is similar to parallel GC, except that it uses multiple threads for both generations.</p>
+</div>
+<div class="paragraph">
+<p><strong>Concurrent Mark Sweep (CMS) Collector:</strong> It does the garbage collection for the old generation. You can limit the number of threads in CMS collector using XX:ParalleCMSThreads=JVM option. It is also known as Concurrent Low Pause Collector.</p>
+</div>
+<div class="paragraph">
+<p><strong>G1 Garbage Collector:</strong> It introduced in Java 7. Its objective is to replace the CMS collector. It is a parallel, concurrent, and CMS collector. There is no young and old generation space. It divides the heap into several equal sized heaps. It first collects the regions with lesser live data.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_mark_and_sweep_algorithm">Mark and Sweep Algorithm</h3>
+<div class="paragraph">
+<p>JRockit JVM uses the mark, and sweep algorithm for performing the garbage collection. It contains two phases, the mark phase, and the sweep phase.</p>
+</div>
+<div class="paragraph">
+<p><strong>Mark Phase:</strong> Objects that are accessible from the threads, native handles, and other GC root sources are marked as live. Every object tree has more than one root objects. GC root is always reachable. So any object that has a garbage collection root at its root. It identifies and marks all objects that are in use, and the remaining can be considered garbage.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="src/memory-management-in-java2.png" alt="memory management in java2">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Sweep Phase:</strong> In this phase, the heap is traversed to find the gap between the live objects. These gaps are recorded in the free list and are available for new object allocation.</p>
+</div>
+<div class="paragraph">
+<p>There are two improved versions of mark and sweep:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Concurrent Mark and Sweep</p>
+</li>
+<li>
+<p>Parallel Mark and Sweep</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_concurrent_mark_and_sweep">Concurrent Mark and Sweep</h3>
+<div class="paragraph">
+<p>It allows the threads to continue running during a large portion of the garbage collection. There are following types of marking:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Initial marking:</strong> It identifies the root set of live objects. It is done while threads are paused.</p>
+</li>
+<li>
+<p><strong>Concurrent marking:</strong> In this marking, the reference from the root set are followed. It finds and marks the rest of the live objects in a heap. It is done while the thread is running.</p>
+</li>
+<li>
+<p><strong>Pre-cleaning marking:</strong> It identifies the changes made by concurrent marking. Other live objects marked and found. It is done while the threads are running.</p>
+</li>
+<li>
+<p><strong>Final marking:</strong> It identifies the changes made by pre-cleaning marking. Other live objects marked and found. It is done while threads are paused.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_parallel_mark_and_sweep">Parallel Mark and Sweep</h3>
+<div class="paragraph">
+<p>It uses all available CPU in the system for performing the garbage collection as fast as possible. It is also called the parallel garbage collector. Threads do not execute when the parallel garbage collection executes.</p>
+</div>
+<div class="sect3">
+<h4 id="_pros_of_mark_and_sweep">Pros of Mark and Sweep</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>It is a recurring process.</p>
+</li>
+<li>
+<p>It is an infinite loop.</p>
+</li>
+<li>
+<p>No additional overheads allowed during the execution of an algorithm.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_cons_of_mark_and_sweep">Cons of Mark and Sweep</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>It stops the normal program execution while the garbage collection algorithm runs.</p>
+</li>
+<li>
+<p>It runs multiple times on a program.</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-11-14 21:14:11 UTC
+Last updated 2024-11-14 21:58:46 UTC
 </div>
 </div>
 </body>

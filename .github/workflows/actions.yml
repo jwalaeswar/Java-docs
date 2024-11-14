@@ -38,9 +38,7 @@ jobs:
 
               # Append all .adoc files in the directory to the master.adoc file
               for file in $(find "$dir" -name "*.adoc"); do
-                if echo "$file" | grep -q "master.adoc"; then
-                  
-                else
+                if ! echo "$file" | grep -q "master.adoc"; then
                   echo "include::${file}[]" >> "$master_adoc"
                   echo "" >> "$master_adoc"
                 fi

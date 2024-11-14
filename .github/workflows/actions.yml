@@ -12,7 +12,7 @@ jobs:
     - name: Install Ruby
       run: sudo apt install ruby-full
     - name: Install Asciidoctor
-      run: sudo gem install asciidoctor-reducer
+      run: sudo gem install asciidoctor
     - name: Create HTMLs
       run: | 
         cd ~

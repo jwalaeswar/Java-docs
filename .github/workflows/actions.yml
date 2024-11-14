@@ -27,7 +27,7 @@ jobs:
           echo "# Contents" >> README-NEW.md
 
           # Iterate over directories containing .adoc files (up to maxdepth 2)
-          for dir in $(find . -maxdepth 2 -type f -name "*.adoc" -exec dirname {} \; | sort -u); do
+          find . -maxdepth 2 -type f -name "*.adoc" -exec dirname {} \; | sort -u | while IFS= read -r dir; do
             # Only process directories one level deep in the repo
             if [[ $(echo "$dir" | grep -o '/' | wc -l) -eq 1 ]]; then
               echo "Processing directory: $dir"
@@ -37,7 +37,7 @@ jobs:
               echo "=  $dir" > "$master_adoc"  # Add a title to the master file
 
               # Append all .adoc files in the directory to the master.adoc file
-              for file in $(find "$dir" -name "*.adoc"); do
+              find "$dir" -name "*.adoc" | while IFS= read -r file; do
                 echo "include::${file}[]" >> "$master_adoc"
                 echo "" >> "$master_adoc"
               done
@@ -52,9 +52,9 @@ jobs:
               echo "## [$dir] (~/$dir/master.html)" >> README-NEW.md
 
               # Find all HTML files in the directory and append them to README-NEW.md
-              for html_file in $(find "$dir" -name "*.html" | sort); do
+              find "$dir" -name "*.html" | while IFS= read -r html_file; do
                 if [ -f "$html_file" ]; then
-                  echo "### [$html_file](~/$html_file)" >> README-NEW.md
+                  echo "### [$(basename "$html_file")](~/$html_file)" >> README-NEW.md
                 fi
               done
             fi
@@ -64,7 +64,7 @@ jobs:
           cat README-NEW.md
 
       - name: Upload HTML files as artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v3  # Updated to v3
         with:
           name: html-output
           path: '**/*.html'

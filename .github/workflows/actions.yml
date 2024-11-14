@@ -6,53 +6,54 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v3
-    - name: Set up Ruby (for Asciidoctor)
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: '3.0'
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+        
+      - name: Set up Ruby (for Asciidoctor)
+          uses: ruby/setup-ruby@v1
+          with:
+            ruby-version: '3.0'
 
-    - name: Install Asciidoctor
-      run: |
-        gem install asciidoctor
-    - name: Create HTMLs
-      run: | 
-        cd ~
-        > README-NEW.md
-        echo "# Contents" >> README-NEW.md
-        for dir in $(find . -maxdepth 2 -type f -name "*.adoc" -exec dirname {} \; | sort -u); do
-          if [[ $(echo "$dir" | grep -o '/' | wc -l) -eq 1 ]]; then
-            echo "Processing directory: $dir"
+      - name: Install Asciidoctor
+        run: |
+          gem install asciidoctor
+      - name: Create HTMLs
+        run: | 
+          cd ~
+          > README-NEW.md
+          echo "# Contents" >> README-NEW.md
+          for dir in $(find . -maxdepth 2 -type f -name "*.adoc" -exec dirname {} \; | sort -u); do
+            if [[ $(echo "$dir" | grep -o '/' | wc -l) -eq 1 ]]; then
+              echo "Processing directory: $dir"
 
-            master_adoc="$dir/master.adoc"
-            echo "=  $dir" > "$master_adoc"
+              master_adoc="$dir/master.adoc"
+              echo "=  $dir" > "$master_adoc"
 
-            for file in $(find "$dir" -name "*.adoc"); do
-              echo "include::${file}[]" >> "$master_adoc"
-              echo "" >> "$master_adoc"
-            done
+              for file in $(find "$dir" -name "*.adoc"); do
+                echo "include::${file}[]" >> "$master_adoc"
+                echo "" >> "$master_adoc"
+              done
 
-            asciidoctor "$master_adoc"
+              asciidoctor "$master_adoc"
 
-            rm "$master_adoc"
+              rm "$master_adoc"
 
-            echo "## [$dir] (~/$dir/master.html)" >> README-NEW.md
+              echo "## [$dir] (~/$dir/master.html)" >> README-NEW.md
 
-            cd $dir
-            asciidoctor **/*.adoc
+              cd $dir
+              asciidoctor **/*.adoc
 
-            for html_file in $(ls "$dir"/*.html | sort); do
-              if [ -f "$html_file" ]; then
-                echo "### [$html_file](~/$dir/$html_file)" >> README-NEW.md
-              fi
-            done
-          fi
-        done
-        cat README-NEW.md
+              for html_file in $(ls "$dir"/*.html | sort); do
+                if [ -f "$html_file" ]; then
+                  echo "### [$html_file](~/$dir/$html_file)" >> README-NEW.md
+                fi
+              done
+            fi
+          done
+          cat README-NEW.md
 
-      - name: Upload HTML files as artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: html-output
-          path: '**/*.html'
+        - name: Upload HTML files as artifacts
+          uses: actions/upload-artifact@v2
+          with:
+            name: html-output
+            path: '**/*.html'

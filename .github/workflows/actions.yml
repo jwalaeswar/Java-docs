@@ -34,12 +34,11 @@ jobs:
 
               # Create master.adoc file
               master_adoc="$dir/master.adoc"
-              echo "=  $dir" > "$master_adoc"  # Add a title to the master file
+              > $dir/master.adoc
 
               # Append all .adoc files in the directory to the master.adoc file
               find "$dir" -name "*.adoc" | while IFS= read -r file; do
                 echo "include::${file}[]" >> "$master_adoc"
-                echo "" >> "$master_adoc"
               done
 
               # Generate HTML from master.adoc
@@ -49,12 +48,12 @@ jobs:
               rm "$master_adoc"
 
               # Add section for this directory in README-NEW.md
-              echo "## [$dir] (~/$dir/master.html)" >> README-NEW.md
+              echo "## [$dir] ($dir/master.html)" >> README-NEW.md
 
               # Find all HTML files in the directory and append them to README-NEW.md
               find "$dir" -name "*.html" | while IFS= read -r html_file; do
                 if [ -f "$html_file" ]; then
-                  echo "### [$(basename "$html_file")](~/$html_file)" >> README-NEW.md
+                  echo "### [$(basename "$html_file")]($html_file)" >> README-NEW.md
                 fi
               done
             fi

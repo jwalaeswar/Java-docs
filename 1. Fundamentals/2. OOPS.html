@@ -1,0 +1,1653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.23">
+<title>OOP</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
+<style>
+/*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
+/* Uncomment the following line when using as a custom stylesheet */
+/* @import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700"; */
+html{font-family:sans-serif;-webkit-text-size-adjust:100%}
+a{background:none}
+a:focus{outline:thin dotted}
+a:active,a:hover{outline:0}
+h1{font-size:2em;margin:.67em 0}
+b,strong{font-weight:bold}
+abbr{font-size:.9em}
+abbr[title]{cursor:help;border-bottom:1px dotted #dddddf;text-decoration:none}
+dfn{font-style:italic}
+hr{height:0}
+mark{background:#ff0;color:#000}
+code,kbd,pre,samp{font-family:monospace;font-size:1em}
+pre{white-space:pre-wrap}
+q{quotes:"\201C" "\201D" "\2018" "\2019"}
+small{font-size:80%}
+sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
+sup{top:-.5em}
+sub{bottom:-.25em}
+img{border:0}
+svg:not(:root){overflow:hidden}
+figure{margin:0}
+audio,video{display:inline-block}
+audio:not([controls]){display:none;height:0}
+fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}
+legend{border:0;padding:0}
+button,input,select,textarea{font-family:inherit;font-size:100%;margin:0}
+button,input{line-height:normal}
+button,select{text-transform:none}
+button,html input[type=button],input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer}
+button[disabled],html input[disabled]{cursor:default}
+input[type=checkbox],input[type=radio]{padding:0}
+button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}
+textarea{overflow:auto;vertical-align:top}
+table{border-collapse:collapse;border-spacing:0}
+*,::before,::after{box-sizing:border-box}
+html,body{font-size:100%}
+body{background:#fff;color:rgba(0,0,0,.8);padding:0;margin:0;font-family:"Noto Serif","DejaVu Serif",serif;line-height:1;position:relative;cursor:auto;-moz-tab-size:4;-o-tab-size:4;tab-size:4;word-wrap:anywhere;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}
+a:hover{cursor:pointer}
+img,object,embed{max-width:100%;height:auto}
+object,embed{height:100%}
+img{-ms-interpolation-mode:bicubic}
+.left{float:left!important}
+.right{float:right!important}
+.text-left{text-align:left!important}
+.text-right{text-align:right!important}
+.text-center{text-align:center!important}
+.text-justify{text-align:justify!important}
+.hide{display:none}
+img,object,svg{display:inline-block;vertical-align:middle}
+textarea{height:auto;min-height:50px}
+select{width:100%}
+.subheader,.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{line-height:1.45;color:#7a2518;font-weight:400;margin-top:0;margin-bottom:.25em}
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6,pre,form,p,blockquote,th,td{margin:0;padding:0}
+a{color:#2156a5;text-decoration:underline;line-height:inherit}
+a:hover,a:focus{color:#1d4b8f}
+a img{border:0}
+p{line-height:1.6;margin-bottom:1.25em;text-rendering:optimizeLegibility}
+p aside{font-size:.875em;line-height:1.35;font-style:italic}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{font-family:"Open Sans","DejaVu Sans",sans-serif;font-weight:300;font-style:normal;color:#ba3925;text-rendering:optimizeLegibility;margin-top:1em;margin-bottom:.5em;line-height:1.0125em}
+h1 small,h2 small,h3 small,#toctitle small,.sidebarblock>.content>.title small,h4 small,h5 small,h6 small{font-size:60%;color:#e99b8f;line-height:0}
+h1{font-size:2.125em}
+h2{font-size:1.6875em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.375em}
+h4,h5{font-size:1.125em}
+h6{font-size:1em}
+hr{border:solid #dddddf;border-width:1px 0 0;clear:both;margin:1.25em 0 1.1875em}
+em,i{font-style:italic;line-height:inherit}
+strong,b{font-weight:bold;line-height:inherit}
+small{font-size:60%;line-height:inherit}
+code{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;color:rgba(0,0,0,.9)}
+ul,ol,dl{line-height:1.6;margin-bottom:1.25em;list-style-position:outside;font-family:inherit}
+ul,ol{margin-left:1.5em}
+ul li ul,ul li ol{margin-left:1.25em;margin-bottom:0}
+ul.circle{list-style-type:circle}
+ul.disc{list-style-type:disc}
+ul.square{list-style-type:square}
+ul.circle ul:not([class]),ul.disc ul:not([class]),ul.square ul:not([class]){list-style:inherit}
+ol li ul,ol li ol{margin-left:1.25em;margin-bottom:0}
+dl dt{margin-bottom:.3125em;font-weight:bold}
+dl dd{margin-bottom:1.25em}
+blockquote{margin:0 0 1.25em;padding:.5625em 1.25em 0 1.1875em;border-left:1px solid #ddd}
+blockquote,blockquote p{line-height:1.6;color:rgba(0,0,0,.85)}
+@media screen and (min-width:768px){h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2}
+h1{font-size:2.75em}
+h2{font-size:2.3125em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.6875em}
+h4{font-size:1.4375em}}
+table{background:#fff;margin-bottom:1.25em;border:1px solid #dedede;word-wrap:normal}
+table thead,table tfoot{background:#f7f8f7}
+table thead tr th,table thead tr td,table tfoot tr th,table tfoot tr td{padding:.5em .625em .625em;font-size:inherit;color:rgba(0,0,0,.8);text-align:left}
+table tr th,table tr td{padding:.5625em .625em;font-size:inherit;color:rgba(0,0,0,.8)}
+table tr.even,table tr.alt{background:#f8f8f7}
+table thead tr th,table tfoot tr th,table tbody tr td,table tr td,table tfoot tr td{line-height:1.6}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2;word-spacing:-.05em}
+h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title strong,h4 strong,h5 strong,h6 strong{font-weight:400}
+.center{margin-left:auto;margin-right:auto}
+.stretch{width:100%}
+.clearfix::before,.clearfix::after,.float-group::before,.float-group::after{content:" ";display:table}
+.clearfix::after,.float-group::after{clear:both}
+:not(pre).nobreak{word-wrap:normal}
+:not(pre).nowrap{white-space:nowrap}
+:not(pre).pre-wrap{white-space:pre-wrap}
+:not(pre):not([class^=L])>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background:#f7f7f8;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed}
+pre{color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;line-height:1.45;text-rendering:optimizeSpeed}
+pre code,pre pre{color:inherit;font-size:inherit;line-height:inherit}
+pre>code{display:block}
+pre.nowrap,pre.nowrap pre{white-space:pre;word-wrap:normal}
+em em{font-style:normal}
+strong strong{font-weight:400}
+.keyseq{color:rgba(51,51,51,.8)}
+kbd{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;display:inline-block;color:rgba(0,0,0,.8);font-size:.65em;line-height:1.45;background:#f7f7f7;border:1px solid #ccc;border-radius:3px;box-shadow:0 1px 0 rgba(0,0,0,.2),inset 0 0 0 .1em #fff;margin:0 .15em;padding:.2em .5em;vertical-align:middle;position:relative;top:-.1em;white-space:nowrap}
+.keyseq kbd:first-child{margin-left:0}
+.keyseq kbd:last-child{margin-right:0}
+.menuseq,.menuref{color:#000}
+.menuseq b:not(.caret),.menuref{font-weight:inherit}
+.menuseq{word-spacing:-.02em}
+.menuseq b.caret{font-size:1.25em;line-height:.8}
+.menuseq i.caret{font-weight:bold;text-align:center;width:.45em}
+b.button::before,b.button::after{position:relative;top:-1px;font-weight:400}
+b.button::before{content:"[";padding:0 3px 0 2px}
+b.button::after{content:"]";padding:0 2px 0 3px}
+p a>code:hover{color:rgba(0,0,0,.9)}
+#header,#content,#footnotes,#footer{width:100%;margin:0 auto;max-width:62.5em;*zoom:1;position:relative;padding-left:.9375em;padding-right:.9375em}
+#header::before,#header::after,#content::before,#content::after,#footnotes::before,#footnotes::after,#footer::before,#footer::after{content:" ";display:table}
+#header::after,#content::after,#footnotes::after,#footer::after{clear:both}
+#content{margin-top:1.25em}
+#content::before{content:none}
+#header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
+#header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #dddddf}
+#header>h1:only-child{border-bottom:1px solid #dddddf;padding-bottom:8px}
+#header .details{border-bottom:1px solid #dddddf;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:flex;flex-flow:row wrap}
+#header .details span:first-child{margin-left:-.125em}
+#header .details span.email a{color:rgba(0,0,0,.85)}
+#header .details br{display:none}
+#header .details br+span::before{content:"\00a0\2013\00a0"}
+#header .details br+span.author::before{content:"\00a0\22c5\00a0";color:rgba(0,0,0,.85)}
+#header .details br+span#revremark::before{content:"\00a0|\00a0"}
+#header #revnumber{text-transform:capitalize}
+#header #revnumber::after{content:"\00a0"}
+#content>h1:first-child:not([class]){color:rgba(0,0,0,.85);border-bottom:1px solid #dddddf;padding-bottom:8px;margin-top:0;padding-top:1rem;margin-bottom:1.25rem}
+#toc{border-bottom:1px solid #e7e7e9;padding-bottom:.5em}
+#toc>ul{margin-left:.125em}
+#toc ul.sectlevel0>li>a{font-style:italic}
+#toc ul.sectlevel0 ul.sectlevel1{margin:.5em 0}
+#toc ul{font-family:"Open Sans","DejaVu Sans",sans-serif;list-style-type:none}
+#toc li{line-height:1.3334;margin-top:.3334em}
+#toc a{text-decoration:none}
+#toc a:active{text-decoration:underline}
+#toctitle{color:#7a2518;font-size:1.2em}
+@media screen and (min-width:768px){#toctitle{font-size:1.375em}
+body.toc2{padding-left:15em;padding-right:0}
+body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
+#toc.toc2{margin-top:0!important;background:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #e7e7e9;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
+#toc.toc2 #toctitle{margin-top:0;margin-bottom:.8rem;font-size:1.2em}
+#toc.toc2>ul{font-size:.9em;margin-bottom:0}
+#toc.toc2 ul ul{margin-left:0;padding-left:1em}
+#toc.toc2 ul.sectlevel0 ul.sectlevel1{padding-left:0;margin-top:.5em;margin-bottom:.5em}
+body.toc2.toc-right{padding-left:0;padding-right:15em}
+body.toc2.toc-right #toc.toc2{border-right-width:0;border-left:1px solid #e7e7e9;left:auto;right:0}}
+@media screen and (min-width:1280px){body.toc2{padding-left:20em;padding-right:0}
+#toc.toc2{width:20em}
+#toc.toc2 #toctitle{font-size:1.375em}
+#toc.toc2>ul{font-size:.95em}
+#toc.toc2 ul ul{padding-left:1.25em}
+body.toc2.toc-right{padding-left:0;padding-right:20em}}
+#content #toc{border:1px solid #e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;border-radius:4px}
+#content #toc>:first-child{margin-top:0}
+#content #toc>:last-child{margin-bottom:0}
+#footer{max-width:none;background:rgba(0,0,0,.8);padding:1.25em}
+#footer-text{color:hsla(0,0%,100%,.8);line-height:1.44}
+#content{margin-bottom:.625em}
+.sect1{padding-bottom:.625em}
+@media screen and (min-width:768px){#content{margin-bottom:1.25em}
+.sect1{padding-bottom:1.25em}}
+.sect1:last-child{padding-bottom:0}
+.sect1+.sect1{border-top:1px solid #e7e7e9}
+#content h1>a.anchor,h2>a.anchor,h3>a.anchor,#toctitle>a.anchor,.sidebarblock>.content>.title>a.anchor,h4>a.anchor,h5>a.anchor,h6>a.anchor{position:absolute;z-index:1001;width:1.5ex;margin-left:-1.5ex;display:block;text-decoration:none!important;visibility:hidden;text-align:center;font-weight:400}
+#content h1>a.anchor::before,h2>a.anchor::before,h3>a.anchor::before,#toctitle>a.anchor::before,.sidebarblock>.content>.title>a.anchor::before,h4>a.anchor::before,h5>a.anchor::before,h6>a.anchor::before{content:"\00A7";font-size:.85em;display:block;padding-top:.1em}
+#content h1:hover>a.anchor,#content h1>a.anchor:hover,h2:hover>a.anchor,h2>a.anchor:hover,h3:hover>a.anchor,#toctitle:hover>a.anchor,.sidebarblock>.content>.title:hover>a.anchor,h3>a.anchor:hover,#toctitle>a.anchor:hover,.sidebarblock>.content>.title>a.anchor:hover,h4:hover>a.anchor,h4>a.anchor:hover,h5:hover>a.anchor,h5>a.anchor:hover,h6:hover>a.anchor,h6>a.anchor:hover{visibility:visible}
+#content h1>a.link,h2>a.link,h3>a.link,#toctitle>a.link,.sidebarblock>.content>.title>a.link,h4>a.link,h5>a.link,h6>a.link{color:#ba3925;text-decoration:none}
+#content h1>a.link:hover,h2>a.link:hover,h3>a.link:hover,#toctitle>a.link:hover,.sidebarblock>.content>.title>a.link:hover,h4>a.link:hover,h5>a.link:hover,h6>a.link:hover{color:#a53221}
+details,.audioblock,.imageblock,.literalblock,.listingblock,.stemblock,.videoblock{margin-bottom:1.25em}
+details{margin-left:1.25rem}
+details>summary{cursor:pointer;display:block;position:relative;line-height:1.6;margin-bottom:.625rem;outline:none;-webkit-tap-highlight-color:transparent}
+details>summary::-webkit-details-marker{display:none}
+details>summary::before{content:"";border:solid transparent;border-left:solid;border-width:.3em 0 .3em .5em;position:absolute;top:.5em;left:-1.25rem;transform:translateX(15%)}
+details[open]>summary::before{border:solid transparent;border-top:solid;border-width:.5em .3em 0;transform:translateY(15%)}
+details>summary::after{content:"";width:1.25rem;height:1em;position:absolute;top:.3em;left:-1.25rem}
+.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{text-rendering:optimizeLegibility;text-align:left;font-family:"Noto Serif","DejaVu Serif",serif;font-size:1rem;font-style:italic}
+table.tableblock.fit-content>caption.title{white-space:nowrap;width:0}
+.paragraph.lead>p,#preamble>.sectionbody>[class=paragraph]:first-of-type p{font-size:1.21875em;line-height:1.6;color:rgba(0,0,0,.85)}
+.admonitionblock>table{border-collapse:separate;border:0;background:none;width:100%}
+.admonitionblock>table td.icon{text-align:center;width:80px}
+.admonitionblock>table td.icon img{max-width:none}
+.admonitionblock>table td.icon .title{font-weight:bold;font-family:"Open Sans","DejaVu Sans",sans-serif;text-transform:uppercase}
+.admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #dddddf;color:rgba(0,0,0,.6);word-wrap:anywhere}
+.admonitionblock>table td.content>:last-child>:last-child{margin-bottom:0}
+.exampleblock>.content{border:1px solid #e6e6e6;margin-bottom:1.25em;padding:1.25em;background:#fff;border-radius:4px}
+.sidebarblock{border:1px solid #dbdbd6;margin-bottom:1.25em;padding:1.25em;background:#f3f3f2;border-radius:4px}
+.sidebarblock>.content>.title{color:#7a2518;margin-top:0;text-align:center}
+.exampleblock>.content>:first-child,.sidebarblock>.content>:first-child{margin-top:0}
+.exampleblock>.content>:last-child,.exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
+.literalblock pre,.listingblock>.content>pre{border-radius:4px;overflow-x:auto;padding:1em;font-size:.8125em}
+@media screen and (min-width:768px){.literalblock pre,.listingblock>.content>pre{font-size:.90625em}}
+@media screen and (min-width:1280px){.literalblock pre,.listingblock>.content>pre{font-size:1em}}
+.literalblock pre,.listingblock>.content>pre:not(.highlight),.listingblock>.content>pre[class=highlight],.listingblock>.content>pre[class^="highlight "]{background:#f7f7f8}
+.literalblock.output pre{color:#f7f7f8;background:rgba(0,0,0,.9)}
+.listingblock>.content{position:relative}
+.listingblock code[data-lang]::before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:inherit;opacity:.5}
+.listingblock:hover code[data-lang]::before{display:block}
+.listingblock.terminal pre .command::before{content:attr(data-prompt);padding-right:.5em;color:inherit;opacity:.5}
+.listingblock.terminal pre .command:not([data-prompt])::before{content:"$"}
+.listingblock pre.highlightjs{padding:0}
+.listingblock pre.highlightjs>code{padding:1em;border-radius:4px}
+.listingblock pre.prettyprint{border-width:0}
+.prettyprint{background:#f7f7f8}
+pre.prettyprint .linenums{line-height:1.45;margin-left:2em}
+pre.prettyprint li{background:none;list-style-type:inherit;padding-left:0}
+pre.prettyprint li code[data-lang]::before{opacity:1}
+pre.prettyprint li:not(:first-child) code[data-lang]::before{display:none}
+table.linenotable{border-collapse:separate;border:0;margin-bottom:0;background:none}
+table.linenotable td[class]{color:inherit;vertical-align:top;padding:0;line-height:inherit;white-space:normal}
+table.linenotable td.code{padding-left:.75em}
+table.linenotable td.linenos,pre.pygments .linenos{border-right:1px solid;opacity:.35;padding-right:.5em;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}
+pre.pygments span.linenos{display:inline-block;margin-right:.75em}
+.quoteblock{margin:0 1em 1.25em 1.5em;display:table}
+.quoteblock:not(.excerpt)>.title{margin-left:-1.5em;margin-bottom:.75em}
+.quoteblock blockquote,.quoteblock p{color:rgba(0,0,0,.85);font-size:1.15rem;line-height:1.75;word-spacing:.1em;letter-spacing:0;font-style:italic;text-align:justify}
+.quoteblock blockquote{margin:0;padding:0;border:0}
+.quoteblock blockquote::before{content:"\201c";float:left;font-size:2.75em;font-weight:bold;line-height:.6em;margin-left:-.6em;color:#7a2518;text-shadow:0 1px 2px rgba(0,0,0,.1)}
+.quoteblock blockquote>.paragraph:last-child p{margin-bottom:0}
+.quoteblock .attribution{margin-top:.75em;margin-right:.5ex;text-align:right}
+.verseblock{margin:0 1em 1.25em}
+.verseblock pre{font-family:"Open Sans","DejaVu Sans",sans-serif;font-size:1.15rem;color:rgba(0,0,0,.85);font-weight:300;text-rendering:optimizeLegibility}
+.verseblock pre strong{font-weight:400}
+.verseblock .attribution{margin-top:1.25rem;margin-left:.5ex}
+.quoteblock .attribution,.verseblock .attribution{font-size:.9375em;line-height:1.45;font-style:italic}
+.quoteblock .attribution br,.verseblock .attribution br{display:none}
+.quoteblock .attribution cite,.verseblock .attribution cite{display:block;letter-spacing:-.025em;color:rgba(0,0,0,.6)}
+.quoteblock.abstract blockquote::before,.quoteblock.excerpt blockquote::before,.quoteblock .quoteblock blockquote::before{display:none}
+.quoteblock.abstract blockquote,.quoteblock.abstract p,.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{line-height:1.6;word-spacing:0}
+.quoteblock.abstract{margin:0 1em 1.25em;display:block}
+.quoteblock.abstract>.title{margin:0 0 .375em;font-size:1.15em;text-align:center}
+.quoteblock.excerpt>blockquote,.quoteblock .quoteblock{padding:0 0 .25em 1em;border-left:.25em solid #dddddf}
+.quoteblock.excerpt,.quoteblock .quoteblock{margin-left:0}
+.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{color:inherit;font-size:1.0625rem}
+.quoteblock.excerpt .attribution,.quoteblock .quoteblock .attribution{color:inherit;font-size:.85rem;text-align:left;margin-right:0}
+p.tableblock:last-child{margin-bottom:0}
+td.tableblock>.content{margin-bottom:1.25em;word-wrap:anywhere}
+td.tableblock>.content>:last-child{margin-bottom:-1.25em}
+table.tableblock,th.tableblock,td.tableblock{border:0 solid #dedede}
+table.grid-all>*>tr>*{border-width:1px}
+table.grid-cols>*>tr>*{border-width:0 1px}
+table.grid-rows>*>tr>*{border-width:1px 0}
+table.frame-all{border-width:1px}
+table.frame-ends{border-width:1px 0}
+table.frame-sides{border-width:0 1px}
+table.frame-none>colgroup+*>:first-child>*,table.frame-sides>colgroup+*>:first-child>*{border-top-width:0}
+table.frame-none>:last-child>:last-child>*,table.frame-sides>:last-child>:last-child>*{border-bottom-width:0}
+table.frame-none>*>tr>:first-child,table.frame-ends>*>tr>:first-child{border-left-width:0}
+table.frame-none>*>tr>:last-child,table.frame-ends>*>tr>:last-child{border-right-width:0}
+table.stripes-all>*>tr,table.stripes-odd>*>tr:nth-of-type(odd),table.stripes-even>*>tr:nth-of-type(even),table.stripes-hover>*>tr:hover{background:#f8f8f7}
+th.halign-left,td.halign-left{text-align:left}
+th.halign-right,td.halign-right{text-align:right}
+th.halign-center,td.halign-center{text-align:center}
+th.valign-top,td.valign-top{vertical-align:top}
+th.valign-bottom,td.valign-bottom{vertical-align:bottom}
+th.valign-middle,td.valign-middle{vertical-align:middle}
+table thead th,table tfoot th{font-weight:bold}
+tbody tr th{background:#f7f8f7}
+tbody tr th,tbody tr th p,tfoot tr th,tfoot tr th p{color:rgba(0,0,0,.8);font-weight:bold}
+p.tableblock>code:only-child{background:none;padding:0}
+p.tableblock{font-size:1em}
+ol{margin-left:1.75em}
+ul li ol{margin-left:1.5em}
+dl dd{margin-left:1.125em}
+dl dd:last-child,dl dd:last-child>:last-child{margin-bottom:0}
+li p,ul dd,ol dd,.olist .olist,.ulist .ulist,.ulist .olist,.olist .ulist{margin-bottom:.625em}
+ul.checklist,ul.none,ol.none,ul.no-bullet,ol.no-bullet,ol.unnumbered,ul.unstyled,ol.unstyled{list-style-type:none}
+ul.no-bullet,ol.no-bullet,ol.unnumbered{margin-left:.625em}
+ul.unstyled,ol.unstyled{margin-left:0}
+li>p:empty:only-child::before{content:"";display:inline-block}
+ul.checklist>li>p:first-child{margin-left:-1em}
+ul.checklist>li>p:first-child>.fa-square-o:first-child,ul.checklist>li>p:first-child>.fa-check-square-o:first-child{width:1.25em;font-size:.8em;position:relative;bottom:.125em}
+ul.checklist>li>p:first-child>input[type=checkbox]:first-child{margin-right:.25em}
+ul.inline{display:flex;flex-flow:row wrap;list-style:none;margin:0 0 .625em -1.25em}
+ul.inline>li{margin-left:1.25em}
+.unstyled dl dt{font-weight:400;font-style:normal}
+ol.arabic{list-style-type:decimal}
+ol.decimal{list-style-type:decimal-leading-zero}
+ol.loweralpha{list-style-type:lower-alpha}
+ol.upperalpha{list-style-type:upper-alpha}
+ol.lowerroman{list-style-type:lower-roman}
+ol.upperroman{list-style-type:upper-roman}
+ol.lowergreek{list-style-type:lower-greek}
+.hdlist>table,.colist>table{border:0;background:none}
+.hdlist>table>tbody>tr,.colist>table>tbody>tr{background:none}
+td.hdlist1,td.hdlist2{vertical-align:top;padding:0 .625em}
+td.hdlist1{font-weight:bold;padding-bottom:1.25em}
+td.hdlist2{word-wrap:anywhere}
+.literalblock+.colist,.listingblock+.colist{margin-top:-.5em}
+.colist td:not([class]):first-child{padding:.4em .75em 0;line-height:1;vertical-align:top}
+.colist td:not([class]):first-child img{max-width:none}
+.colist td:not([class]):last-child{padding:.25em 0}
+.thumb,.th{line-height:0;display:inline-block;border:4px solid #fff;box-shadow:0 0 0 1px #ddd}
+.imageblock.left{margin:.25em .625em 1.25em 0}
+.imageblock.right{margin:.25em 0 1.25em .625em}
+.imageblock>.title{margin-bottom:0}
+.imageblock.thumb,.imageblock.th{border-width:6px}
+.imageblock.thumb>.title,.imageblock.th>.title{padding:0 .125em}
+.image.left,.image.right{margin-top:.25em;margin-bottom:.25em;display:inline-block;line-height:0}
+.image.left{margin-right:.625em}
+.image.right{margin-left:.625em}
+a.image{text-decoration:none;display:inline-block}
+a.image object{pointer-events:none}
+sup.footnote,sup.footnoteref{font-size:.875em;position:static;vertical-align:super}
+sup.footnote a,sup.footnoteref a{text-decoration:none}
+sup.footnote a:active,sup.footnoteref a:active,#footnotes .footnote a:first-of-type:active{text-decoration:underline}
+#footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
+#footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em;border-width:1px 0 0}
+#footnotes .footnote{padding:0 .375em 0 .225em;line-height:1.3334;font-size:.875em;margin-left:1.2em;margin-bottom:.2em}
+#footnotes .footnote a:first-of-type{font-weight:bold;text-decoration:none;margin-left:-1.05em}
+#footnotes .footnote:last-of-type{margin-bottom:0}
+#content #footnotes{margin-top:-.625em;margin-bottom:0;padding:.75em 0}
+div.unbreakable{page-break-inside:avoid}
+.big{font-size:larger}
+.small{font-size:smaller}
+.underline{text-decoration:underline}
+.overline{text-decoration:overline}
+.line-through{text-decoration:line-through}
+.aqua{color:#00bfbf}
+.aqua-background{background:#00fafa}
+.black{color:#000}
+.black-background{background:#000}
+.blue{color:#0000bf}
+.blue-background{background:#0000fa}
+.fuchsia{color:#bf00bf}
+.fuchsia-background{background:#fa00fa}
+.gray{color:#606060}
+.gray-background{background:#7d7d7d}
+.green{color:#006000}
+.green-background{background:#007d00}
+.lime{color:#00bf00}
+.lime-background{background:#00fa00}
+.maroon{color:#600000}
+.maroon-background{background:#7d0000}
+.navy{color:#000060}
+.navy-background{background:#00007d}
+.olive{color:#606000}
+.olive-background{background:#7d7d00}
+.purple{color:#600060}
+.purple-background{background:#7d007d}
+.red{color:#bf0000}
+.red-background{background:#fa0000}
+.silver{color:#909090}
+.silver-background{background:#bcbcbc}
+.teal{color:#006060}
+.teal-background{background:#007d7d}
+.white{color:#bfbfbf}
+.white-background{background:#fafafa}
+.yellow{color:#bfbf00}
+.yellow-background{background:#fafa00}
+span.icon>.fa{cursor:default}
+a span.icon>.fa{cursor:inherit}
+.admonitionblock td.icon [class^="fa icon-"]{font-size:2.5em;text-shadow:1px 1px 2px rgba(0,0,0,.5);cursor:default}
+.admonitionblock td.icon .icon-note::before{content:"\f05a";color:#19407c}
+.admonitionblock td.icon .icon-tip::before{content:"\f0eb";text-shadow:1px 1px 2px rgba(155,155,0,.8);color:#111}
+.admonitionblock td.icon .icon-warning::before{content:"\f071";color:#bf6900}
+.admonitionblock td.icon .icon-caution::before{content:"\f06d";color:#bf3400}
+.admonitionblock td.icon .icon-important::before{content:"\f06a";color:#bf0000}
+.conum[data-value]{display:inline-block;color:#fff!important;background:rgba(0,0,0,.8);border-radius:50%;text-align:center;font-size:.75em;width:1.67em;height:1.67em;line-height:1.67em;font-family:"Open Sans","DejaVu Sans",sans-serif;font-style:normal;font-weight:bold}
+.conum[data-value] *{color:#fff!important}
+.conum[data-value]+b{display:none}
+.conum[data-value]::after{content:attr(data-value)}
+pre .conum[data-value]{position:relative;top:-.125em}
+b.conum *{color:inherit!important}
+.conum:not([data-value]):empty{display:none}
+dt,th.tableblock,td.content,div.footnote{text-rendering:optimizeLegibility}
+h1,h2,p,td.content,span.alt,summary{letter-spacing:-.01em}
+p strong,td.content strong,div.footnote strong{letter-spacing:-.005em}
+p,blockquote,dt,td.content,td.hdlist1,span.alt,summary{font-size:1.0625rem}
+p{margin-bottom:1.25rem}
+.sidebarblock p,.sidebarblock dt,.sidebarblock td.content,p.tableblock{font-size:1em}
+.exampleblock>.content{background:#fffef7;border-color:#e0e0dc;box-shadow:0 1px 4px #e0e0dc}
+.print-only{display:none!important}
+@page{margin:1.25cm .75cm}
+@media print{*{box-shadow:none!important;text-shadow:none!important}
+html{font-size:80%}
+a{color:inherit!important;text-decoration:underline!important}
+a.bare,a[href^="#"],a[href^="mailto:"]{text-decoration:none!important}
+a[href^="http:"]:not(.bare)::after,a[href^="https:"]:not(.bare)::after{content:"(" attr(href) ")";display:inline-block;font-size:.875em;padding-left:.25em}
+abbr[title]{border-bottom:1px dotted}
+abbr[title]::after{content:" (" attr(title) ")"}
+pre,blockquote,tr,img,object,svg{page-break-inside:avoid}
+thead{display:table-header-group}
+svg{max-width:100%}
+p,blockquote,dt,td.content{font-size:1em;orphans:3;widows:3}
+h2,h3,#toctitle,.sidebarblock>.content>.title{page-break-after:avoid}
+#header,#content,#footnotes,#footer{max-width:none}
+#toc,.sidebarblock,.exampleblock>.content{background:none!important}
+#toc{border-bottom:1px solid #dddddf!important;padding-bottom:0!important}
+body.book #header{text-align:center}
+body.book #header>h1:first-child{border:0!important;margin:2.5em 0 1em}
+body.book #header .details{border:0!important;display:block;padding:0!important}
+body.book #header .details span:first-child{margin-left:0!important}
+body.book #header .details br{display:block}
+body.book #header .details br+span::before{content:none!important}
+body.book #toc{border:0!important;text-align:left!important;padding:0!important;margin:0!important}
+body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-break-before:always}
+.listingblock code[data-lang]::before{display:block}
+#footer{padding:0 .9375em}
+.hide-on-print{display:none!important}
+.print-only{display:block!important}
+.hide-for-print{display:none!important}
+.show-for-print{display:inherit!important}}
+@media amzn-kf8,print{#header>h1:first-child{margin-top:1.25rem}
+.sect1{padding:0!important}
+.sect1+.sect1{border:0}
+#footer{background:none}
+#footer-text{color:rgba(0,0,0,.6);font-size:.9em}}
+@media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
+</style>
+</head>
+<body class="article">
+<div id="header">
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="_oop">OOP</h2>
+<div class="sectionbody">
+<hr>
+<div class="paragraph">
+<p>Object-oriented programming (OOP) is a programming paradigm based on the concept of objects, which can contain data and code: data in the form of fields (often known as attributes or properties), and code in the form of procedures (often known as methods). In OOP, computer programs are designed by making them out of objects that interact with one another.</p>
+</div>
+<div class="paragraph">
+<p>Abstraction, encapsulation, polymorphism, and inheritance are the four main theoretical principles of object-oriented programming. But Java also works with three further OOP concepts: association, aggregation, and composition.</p>
+</div>
+<hr>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_class">Class</h2>
+<div class="sectionbody">
+<hr>
+<div class="sect2">
+<h3 id="_what_is_an_object_in_java">What is an object in Java?</h3>
+<div class="paragraph">
+<p>An object is a real-word entity that has state and behaviour. In other words, an object is a tangible thing that can be touch and feel, like a car or chair, etc. are the example of objects. The banking system is an example of an intangible object. Every object has a distinct identity, which is usually implemented by a unique ID that the JVM uses internally for identification.</p>
+</div>
+<div class="sect3">
+<h4 id="_characteristics_of_an_object">Characteristics of an Object:</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>State</strong>: It represents the data (value) of an object.</p>
+</li>
+<li>
+<p><strong>Behavior</strong>: It represents the behavior (functionality) of an object such as deposit, withdraw, etc.</p>
+</li>
+<li>
+<p><strong>Identity</strong>: An object&#8217;s identity is typically implemented via a unique ID. The ID&#8217;s value is not visible to the external user; however, it is used internally by the JVM to identify each object uniquely.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>An object is an instance of a class</strong>. A class is a template or blueprint from which objects are created. So, an object is the instance(result) of a class.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_object_definitions">Object Definitions:</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>An object is a real-world entity.</p>
+</li>
+<li>
+<p>An object is a runtime entity.</p>
+</li>
+<li>
+<p>The object is an entity which has state and behavior.</p>
+</li>
+<li>
+<p>The object is an instance of a class.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_what_is_a_class_in_java">What is a Class in Java?</h3>
+<div class="paragraph">
+<p>A class is a group of objects which have common properties. It is a template or blueprint from which objects are created. It is a logical entity. It can&#8217;t be physical.</p>
+</div>
+<div class="paragraph">
+<p>A class in Java can contain:</p>
+</div>
+<div class="paragraph">
+<p><strong>1. Fields</strong></p>
+</div>
+<div class="paragraph">
+<p>Variables stated inside a class that indicate the status of objects formed from that class are called fields, sometimes referred to as instance variables. They specify the data that will be stored in each class object. Different access modifiers, such as public, private, and protected, can be applied to fields to regulate their visibility and usability.</p>
+</div>
+<div class="paragraph">
+<p><strong>2. Methods</strong></p>
+</div>
+<div class="paragraph">
+<p>Methods are functions defined inside a class that includes the actions or behaviors that objects of that class are capable of performing. These techniques allow the outside world to function and change the object&#8217;s state (fields). Additionally, methods can be void (that is, they return nothing) or have different access modifiers. They can also return values.</p>
+</div>
+<div class="paragraph">
+<p><strong>3. Constructors</strong></p>
+</div>
+<div class="paragraph">
+<p>Constructors are unique methods that are used to initialize class objects. When an object of the class is created using the new keyword, they are called with the same name as the class. Constructors can initialize the fields of an object or carry out any additional setup that&#8217;s required when an object is created.</p>
+</div>
+<div class="paragraph">
+<p><strong>4. Blocks</strong></p>
+</div>
+<div class="paragraph">
+<p>Within a class, Java allows two different kinds of blocks: instance blocks, commonly referred to as initialization blocks and static blocks. Static blocks, which are usually used for static initialization, are only executed once when the class is loaded into memory. Instance blocks can be used to initialize instance variables and are executed each time a class object is generated.</p>
+</div>
+<div class="paragraph">
+<p><strong>5. Nested Class and Interface</strong></p>
+</div>
+<div class="paragraph">
+<p>Java permits the nesting of classes and interfaces inside other classes and interfaces. The members (fields, methods) of the enclosing class are accessible to nested classes, which can be static or non-static. Nested interfaces can be used to logically group related constants and methods together because they are implicitly static.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_what_are_the_different_ways_to_create_an_object_in_java">What are the different ways to create an object in Java?</h3>
+<div class="paragraph">
+<p>There are the following ways to create an object in Java.</p>
+</div>
+<div class="paragraph">
+<p><strong>1. By new keyword</strong></p>
+</div>
+<div class="paragraph">
+<p>The most common way to create an object in Java is by using the new keyword followed by a constructor.</p>
+</div>
+<div class="paragraph">
+<p>For example: ClassName obj = new ClassName();. This allocates memory for the object and calls its constructor to initialize it.</p>
+</div>
+<div class="paragraph">
+<p><strong>2. By newInstance() method</strong></p>
+</div>
+<div class="paragraph">
+<p>This method is part of the java.lang.Class class and is used to create a new instance of a class dynamically at runtime. It invokes the no-argument constructor of the class.</p>
+</div>
+<div class="paragraph">
+<p>For example: ClassName obj = (ClassName) Class.forName("ClassName").newInstance();.</p>
+</div>
+<div class="paragraph">
+<p><strong>3. By clone() method</strong></p>
+</div>
+<div class="paragraph">
+<p>The clone() method creates a copy of an existing object by performing a shallow copy. It returns a new object that is a duplicate of the original object.</p>
+</div>
+<div class="paragraph">
+<p>For example: ClassName obj2 = (ClassName) obj1.clone();.</p>
+</div>
+<div class="paragraph">
+<p><strong>4. By deserialization</strong></p>
+</div>
+<div class="paragraph">
+<p>Objects can be created by deserializing them from a stream of bytes. This is achieved using the ObjectInputStream class in Java. The serialized object is read from a file or network, and then the readObject() method is called to recreate the object.</p>
+</div>
+<div class="paragraph">
+<p><strong>5. By factory method</strong></p>
+</div>
+<div class="paragraph">
+<p>Factory methods are static methods within a class that return instances of the class. They provide a way to create objects without directly invoking a constructor and can be used to encapsulate object creation logic.</p>
+</div>
+<div class="paragraph">
+<p>For example: ClassName obj = ClassName.createInstance().</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_inheritance_in_java">Inheritance in Java</h2>
+<div class="sectionbody">
+<hr>
+<div class="paragraph">
+<p>Inheritance in Java is a mechanism in which one object acquires all the properties and behaviors of a parent object. It is an important part of OOPs (Object Oriented programming system).</p>
+</div>
+<div class="paragraph">
+<p>The idea behind inheritance in Java is that we can create new classes that are built upon existing classes. When we inherit methods from an existing class, we can reuse methods and fields of the parent class. However, we can add new methods and fields in your current class also.</p>
+</div>
+<div class="sect2">
+<h3 id="_what_is_inheritance">What is Inheritance?</h3>
+<div class="paragraph">
+<p>Inheritance in Java enables a class to inherit properties and actions from another class, called a superclass or parent class. A class derived from a superclass is called a subclass or child group. Through inheritance, a subclass can access members of its superclass (fields and methods), enforce reuse rules, and encourage hierarchy.</p>
+</div>
+<div class="paragraph">
+<p>Inheritance represents the IS-A relationship which is also known as a parent-child relationship.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_why_use_inheritance_in_java">Why use inheritance in Java?</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>For Method Overriding (so runtime polymorphism can be achieved).</p>
+</li>
+<li>
+<p>For Code Reusability.</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="_the_syntax_of_java_inheritance">The syntax of Java Inheritance</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">class Subclass-name extends Superclass-name
+{
+   //methods and fields
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_types_of_inheritance_in_java">Types of Inheritance in Java</h4>
+<div class="paragraph">
+<p>On the basis of class, there can be three types of inheritance in java: single, multilevel and hierarchical.</p>
+</div>
+<div class="paragraph">
+<p>In java programming, multiple and hybrid inheritance is supported through interface only.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="img1.jpg" alt="img1">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="img2.jpg" alt="img2">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_single_inheritance_example">Single Inheritance Example</h4>
+<div class="paragraph">
+<p>When a class inherits another class, it is known as a single inheritance. In the example given below, Dog class inherits the Animal class, so there is the single inheritance.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">class Animal{
+    void eat(){System.out.println("eating...");}
+}
+class Dog extends Animal{
+    void bark(){System.out.println("barking...");}
+}
+class TestInheritance{
+    public static void main(String args[]){
+        Dog d=new Dog();
+        d.bark();
+        d.eat();
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Output:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>barking...
+eating...</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_multilevel_inheritance_example">Multilevel Inheritance Example</h4>
+<div class="paragraph">
+<p>When there is a chain of inheritance, it is known as multilevel inheritance. As you can see in the example given below, BabyDog class inherits the Dog class which again inherits the Animal class, so there is a multilevel inheritance.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">class Animal{
+    void eat(){System.out.println("eating...");}
+}
+class Dog extends Animal{
+    void bark(){System.out.println("barking...");}
+}
+class BabyDog extends Dog{
+    void weep(){System.out.println("weeping...");}
+}
+class TestInheritance2{
+    public static void main(String args[]){
+        BabyDog d=new BabyDog();
+        d.weep();
+        d.bark();
+        d.eat();
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Output:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>weeping...
+barking...
+eating...</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_hierarchical_inheritance_example">Hierarchical Inheritance Example</h4>
+<div class="paragraph">
+<p>When two or more classes inherits a single class, it is known as hierarchical inheritance. In the example given below, Dog and Cat classes inherits the Animal class, so there is hierarchical inheritance.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">class Animal{
+    void eat(){System.out.println("eating...");}
+}
+class Dog extends Animal{
+    void bark(){System.out.println("barking...");}
+}
+class Cat extends Animal{
+    void meow(){System.out.println("meowing...");}
+}
+class TestInheritance3{
+    public static void main(String args[]){
+        Cat c=new Cat();
+        c.meow();
+        c.eat();
+        //c.bark();//C.T.Error
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Output:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>meowing...
+eating...</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_why_multiple_inheritance_is_not_supported_in_java">Why multiple inheritance is not supported in Java?</h3>
+<div class="paragraph">
+<p>To reduce the complexity and simplify the language, multiple inheritance is not supported in java.</p>
+</div>
+<div class="paragraph">
+<p>Suppose there are three classes A, B, and C. The C class inherits A and B classes. If A and B classes have the same method and we call it from child class object, there will be ambiguity to call the method of A or B class.</p>
+</div>
+<div class="paragraph">
+<p>Since compile-time errors are better than runtime errors, Java renders compile-time error if you inherit 2 classes. So whether you have same method or different, there will be compile time error.</p>
+</div>
+<div class="paragraph">
+<p>Java supports multiple inheritance through interfaces, where a class can implement multiple interfaces.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">interface A {
+    default void methodA() {
+        System.out.println("Method A from interface A");
+    }
+}
+// Interface B
+interface B {
+    default void methodB() {
+        System.out.println("Method B from interface B");
+    }
+}
+// Class implementing both interfaces A and B
+class MyClass implements A, B {
+    public void myMethod() {
+        System.out.println("My method in MyClass");
+    }
+}
+public class MultipleInheritanceDemo {
+    public static void main(String[] args) {
+        // Creating an object of MyClass
+        MyClass obj = new MyClass();
+        // Calling methods from both interfaces
+        obj.methodA();
+        obj.methodB();
+        // Calling method defined in MyClass
+        obj.myMethod();
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Output:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Method A from interface A
+Method B from interface B
+My method in MyClass</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this example, MyClass implements both interfaces A and B, allowing it to inherit methods from both interfaces. This demonstrates the concept of achieving multiple inheritance in Java through interfaces.</p>
+</div>
+<div class="sect3">
+<h4 id="_benefits_of_inheritance">Benefits of Inheritance</h4>
+<div class="paragraph">
+<p>Inheritance offers several advantages, including:</p>
+</div>
+<div class="paragraph">
+<p><strong>Code Reusability:</strong> Inherited members from a superclass can be reused in subclasses, reducing redundant code and promoting a modular approach to software development.</p>
+</div>
+<div class="paragraph">
+<p><strong>Hierarchical Organization:</strong> Inheritance facilitates the creation of well-structured class hierarchies, improving code readability and maintainability.</p>
+</div>
+<div class="paragraph">
+<p><strong>Polymorphism:</strong> Subclasses can override superclass methods, allowing for polymorphic behavior, where methods can behave differently based on the object type at runtime.</p>
+</div>
+<div class="paragraph">
+<p><strong>Easier Maintenance:</strong> Changes made to a superclass automatically propagate to its subclasses, ensuring consistency and simplifying maintenance efforts.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_best_practices_for_using_inheritance">Best Practices for Using Inheritance</h4>
+<div class="paragraph">
+<p>While inheritance is a powerful tool, its misuse can lead to code complexity and tight coupling.</p>
+</div>
+<div class="paragraph">
+<p>Here are some best practices to consider:</p>
+</div>
+<div class="paragraph">
+<p><strong>Favor Composition Over Inheritance:</strong> When possible, prefer composition, where classes are composed of other classes, over inheritance. This approach often leads to more flexible and maintainable code.</p>
+</div>
+<div class="paragraph">
+<p><strong>Follow the "is-a" Relationship:</strong> Ensure that inheritance relationships adhere to the "is-a" principle, where a subclass represents a more specialized version of its superclass.</p>
+</div>
+<div class="paragraph">
+<p><strong>Use Abstract Classes and Interfaces Wisely:</strong> Abstract classes and interfaces provide blueprints for subclasses. Use abstract classes when you want to provide a default implementation or share code among related subclasses. Use interfaces to define contracts that classes can implement, enabling multiple inheritance through interfaces.</p>
+</div>
+<div class="paragraph">
+<p><strong>Avoid Deep Inheritance Hierarchies:</strong> Deep inheritance hierarchies can make code difficult to understand and maintain. Aim for shallow hierarchies whenever possible.</p>
+</div>
+<div class="paragraph">
+<p><strong>Prefer Composition for Code Reuse:</strong> Instead of relying solely on inheritance for code reuse, consider using composition alongside inheritance to achieve better flexibility and modularity.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_polymorphism_in_java">Polymorphism in Java</h2>
+<div class="sectionbody">
+<hr>
+<div class="paragraph">
+<p>Polymorphism in Java is a concept by which we can perform a single action in different ways. Polymorphism is derived from 2 Greek words: poly and morphs. The word "poly" means many and "morphs" means forms. So polymorphism means many forms.</p>
+</div>
+<div class="sect2">
+<h3 id="_advantages_of_polymorphism">Advantages of Polymorphism</h3>
+<div class="paragraph">
+<p><strong>1. Code Reusability</strong></p>
+</div>
+<div class="paragraph">
+<p>Polymorphism allows methods in subclasses to override methods in their superclass, enabling code reuse and maintaining a consistent interface across related classes.</p>
+</div>
+<div class="paragraph">
+<p><strong>2. Flexibility and Extensibility</strong></p>
+</div>
+<div class="paragraph">
+<p>Polymorphism allows subclasses to provide their own implementations of methods defined in the superclass, making it easier to extend and customize behavior without modifying existing code.</p>
+</div>
+<div class="paragraph">
+<p><strong>3. Dynamic Method Invocation:</strong></p>
+</div>
+<div class="paragraph">
+<p>Polymorphism enables dynamic method invocation, where the method called is determined by the actual object type at runtime, providing flexibility in method dispatch.</p>
+</div>
+<div class="paragraph">
+<p><strong>4. Interface Implementation:</strong></p>
+</div>
+<div class="paragraph">
+<p>Interfaces in Java allow multiple classes to implement the same interface with their own implementations, facilitating polymorphic behavior and enabling objects of different classes to be treated interchangeably based on a common interface.</p>
+</div>
+<div class="paragraph">
+<p><strong>5. Method Overloading:</strong></p>
+</div>
+<div class="paragraph">
+<p>Polymorphism is also achieved through method overloading, where multiple methods with the same name but different parameter lists can be defined within a class or its subclasses, enhancing code readability and allowing flexibility in method invocation based on parameter types.</p>
+</div>
+<div class="paragraph">
+<p><strong>6. Reduced Code Complexity:</strong></p>
+</div>
+<div class="paragraph">
+<p>Polymorphism helps reduce code complexity by promoting a modular and hierarchical class structure, making it easier to understand, maintain, and extend large-scale software systems.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_types_of_polymorphism">Types of Polymorphism</h3>
+<div class="paragraph">
+<p>There are two types of polymorphism in Java:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>compile-time polymorphism</p>
+</li>
+<li>
+<p>runtime polymorphism.
+We can perform polymorphism in Java by method overloading and method overriding.</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="_compile_time_polymorphism_in_java">Compile- Time Polymorphism in Java</h4>
+<div class="paragraph">
+<p>In Java, method overloading is used to achieve compile-time polymorphism. A class can have numerous methods with the same name but distinct parameter lists thanks to method overloading. The compiler uses the amount and kind of parameters provided to it during compilation to decide which method to call. This choice is made during compilation, which is why it&#8217;s called "compile-time polymorphism."</p>
+</div>
+<div class="paragraph">
+<p>The methods in method overloading must have the same name but differ in the quantity or kind of parameters. Based on the inputs passed in during the method call, the compiler chooses the suitable overloaded method when a method is called. In the event of a perfect match, that procedure is used. If not, the compiler uses broadening to find the closest match depending on the parameter types.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_runtime_polymorphism_in_java">Runtime Polymorphism in Java</h4>
+<div class="paragraph">
+<p><strong>Runtime polymorphism</strong> or <strong>Dynamic Method Dispatch</strong> is a process in which a call to an overridden method is resolved at runtime rather than compile-time.</p>
+</div>
+<div class="paragraph">
+<p>In this process, an overridden method is called through the reference variable of a superclass. The determination of the method to be called is based on the object being referred to by the reference variable.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_upcasting">Upcasting</h4>
+<div class="paragraph">
+<p>If the reference variable of Parent class refers to the object of Child class, it is known as upcasting.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">class A{}
+class B extends A{}
+A a = new B();//upcasting</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For upcasting, we can use the reference variable of class type or an interface type. For Example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">interface I{}
+class A{}
+class B extends A implements I{}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Example of Java Runtime Polymorphism</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">class Bike{
+  void run(){System.out.println("running");}
+}
+class Splendor extends Bike{
+  void run(){System.out.println("running safely with 60km");}
+
+  public static void main(String args[]){
+    Bike b = new Splendor();//upcasting
+    b.run();
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Output:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>running safely with 60km.</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_static_binding_and_dynamic_binding">Static Binding and Dynamic Binding</h4>
+<div class="paragraph">
+<p>Connecting a method call to the method body is known as binding.</p>
+</div>
+<div class="paragraph">
+<p>There are two types of binding</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Static Binding (also known as Early Binding).</p>
+</li>
+<li>
+<p>Dynamic Binding (also known as Late Binding).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>static binding</strong>
+When type of the object is determined at compiled time(by the compiler), it is known as static binding.</p>
+</div>
+<div class="paragraph">
+<p>If there is any private, final or static method in a class, there is static binding.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">class Dog{
+ private void eat(){System.out.println("dog is eating...");}
+
+ public static void main(String args[]){
+  Dog d1=new Dog();
+  d1.eat();
+ }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Dynamic binding</strong></p>
+</div>
+<div class="paragraph">
+<p>When type of the object is determined at run-time, it is known as dynamic binding.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">class Animal{
+ void eat(){System.out.println("animal is eating...");}
+}
+
+class Dog extends Animal{
+ void eat(){System.out.println("dog is eating...");}
+
+ public static void main(String args[]){
+  Animal a=new Dog();
+  a.eat();
+ }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the above example object type cannot be determined by the compiler, because the instance of Dog is also an instance of Animal.So compiler doesn&#8217;t know its type, only its base type.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_abstraction_in_java">Abstraction In Java</h2>
+<div class="sectionbody">
+<hr>
+<div class="sect2">
+<h3 id="_what_is_abstraction_in_java">What Is Abstraction In Java?</h3>
+<div class="paragraph">
+<p>The first pillar of OOP is “Abstraction”. “Abstraction is the process of selecting data to show only the relevant information to the user.”</p>
+</div>
+<div class="paragraph">
+<p>In simple terms, abstraction “displays” only the relevant attributes of objects and “hides” the unnecessary details.</p>
+</div>
+<div class="paragraph">
+<p>Abstraction in OOP can be of two types.</p>
+</div>
+<div class="paragraph">
+<p><strong>1) Data Abstraction</strong></p>
+</div>
+<div class="paragraph">
+<p>In data abstraction, we mostly create complex data types and hide their implementation. We only expose the operations to manipulate these data types without going into the details of their implementation.</p>
+</div>
+<div class="paragraph">
+<p>One advantage of this approach is that we can change the implementation anytime without changing the behavior that is exposed to the user.</p>
+</div>
+<div class="paragraph">
+<p><strong>2) Control Abstraction</strong></p>
+</div>
+<div class="paragraph">
+<p>Control abstraction collects all the control statements that are a part of the application and exposes them as a unit. This feature is used when we have to perform a working feature using this control unit.</p>
+</div>
+<div class="paragraph">
+<p>Control abstraction forms the main unit of structured programming and using control abstraction we can define simple functions in complex frameworks.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">//abstract class
+abstract class Car{
+    abstract void accelerate();
+}
+//concrete class
+class Suzuki extends Car{
+    void accelerate(){
+        System.out.println(&amp;amp;quot;Suzuki::accelerate&amp;amp;quot;);
+
+    }
+}
+class Main{
+    public static void main(String args[]){
+        Car obj = new Suzuki();    //Car object =&amp;amp;gt;contents of Suzuki
+        obj.accelerate();          //call the method
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_what_is_java_abstract_class">What Is Java Abstract Class?</h3>
+<div class="paragraph">
+<p>An abstract class can be defined as a class declared with the keyword “abstract” and has a restriction that it cannot be instantiated.</p>
+</div>
+<div class="paragraph">
+<p>An abstract class may or may not have any abstract method (a method with no implementation). As far as JVM is concerned, an abstract class is an incomplete class that does not have a complete behavior.</p>
+</div>
+<div class="paragraph">
+<p>In a nutshell, an abstract class can be described as shown below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="img3.png" alt="img3">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_abstract_method_in_java">Abstract Method In Java</h3>
+<div class="paragraph">
+<p>An abstract method is a method preceded by an ‘abstract’ keyword without any implementation. An abstract method is declared inside an abstract class.</p>
+</div>
+<div class="paragraph">
+<p>An abstract method is the one that makes a class incomplete as it doesn’t have an implementation. Hence when we include an abstract method in the class, naturally the class becomes incomplete.</p>
+</div>
+<div class="paragraph">
+<p>We can use the abstract method by implementing it in a subclass i.e. a class inherits the abstract class and then implements or provides the code for all the abstract methods declared in the abstract class by overriding them.</p>
+</div>
+<div class="paragraph">
+<p>Thus it becomes compulsory to override the abstract method in the subclass. If the abstract method is not implemented in the subclass as well, then we have to declare the subclass also as “abstract”.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_what_is_the_use_of_an_abstract_class_in_java">What Is The Use Of An Abstract Class In Java</h3>
+<div class="paragraph">
+<p>Let’s consider an example of Vehicles. We know that Vehicles can be of many types. We can have Cars, Scooters, bikes, mopeds, buses, etc. Though there are many types of vehicles, they have some properties or attributes that are common to all vehicles irrespective of their types.</p>
+</div>
+<div class="paragraph">
+<p>For example, if a person is driving a car, what he/she will be interested in is just to start and stop the vehicle or accelerate or brake the vehicle. He/she will not be interested in knowing how the vehicle starts or stop. We are only interested in the abstract working of the functions and not in their details.</p>
+</div>
+<div class="paragraph">
+<p>To begin with, we declare an abstract class “Vehicle”.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="img4.png" alt="img4">
+</div>
+</div>
+<div class="paragraph">
+<p>So we will have an abstract class Vehicle and there will be a concrete class representing each model of the vehicle. For illustration purposes, we have used only three models i.e. car, bike, and scooter.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">abstract class Vehicle{
+    abstract void start () ;
+    abstract void stop ();
+    abstract void accelerate ();
+    abstract void brake ();
+}
+
+class Car extends Vehicle{
+    void start () { //code here…}
+    void stop () { //code here…}
+    void accelerate () { //code here…}
+    void brake () { //code here…}
+}
+class Bike extends Vehicle{
+    void start () { //code here…}
+    void stop () { //code here…}
+    void accelerate () { //code here…}
+    void brake () { //code here…}
+}
+class Scooter extends Vehicle{
+    void start () { //code here…}
+    void stop () { //code here…}
+    void accelerate () { //code here…}
+    void brake () { //code here…}
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>So we will have a Vehicle abstract class and three classes Car, Bike, and Scooter. Each of these classes will extend the Vehicle class and override each of the abstract methods.</p>
+</div>
+<div class="paragraph">
+<p>Thus in general, whenever we have to represent such a system that has common methods or operations to represent, then to present only the outer perspective to the user, we go for abstraction. As a result, we take out the common methods represent them as abstract methods, and collect these abstract methods in a common abstract class.</p>
+</div>
+<div class="paragraph">
+<p>Once we have the outline of a system represented as an abstract class and the operations as abstract methods, we can then derive any number of classes from the given abstract class and override the abstract methods to implement these operations for each class.</p>
+</div>
+<div class="paragraph">
+<p>This way it becomes useful to design a system.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_abstract_class_and_interface">Abstract Class And Interface</h3>
+<div class="paragraph">
+<p>Interfaces are yet other building blocks that implement abstraction. Interfaces are contracts, and classes implementing the interface have to honor these contracts.</p>
+</div>
+<div class="paragraph">
+<p>Contracts in interfaces are nothing but methods that are not implemented. Inside interfaces, we will only have method prototypes. There will not be a single implementation of methods inside interfaces.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_difference_between_abstract_class_and_interface">Difference Between Abstract Class And Interface</h3>
+<div class="imageblock">
+<div class="content">
+<img src="img5.PNG" alt="img5">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_when_to_use_abstract_class_and_interface_in_java">When To Use Abstract Class And Interface In Java</h3>
+<div class="paragraph">
+<p>There are two aspects that we have to consider</p>
+</div>
+<div class="paragraph">
+<p><strong>Abstract Classes With Partial Behavior</strong></p>
+</div>
+<div class="paragraph">
+<p>We know that abstract classes may not be completely implemented. They can have partial behavior. On the other hand, interfaces do not have any implementation. So when we have to choose between an abstract class and an implementation, then we need to consider this aspect of our application.</p>
+</div>
+<div class="paragraph">
+<p>This means that we have to first decide whether the application that we are designing has any common partial implementation that we can separate in an abstract class.</p>
+</div>
+<div class="paragraph">
+<p>For example, consider that we are designing a web application. For this, we will have to use some web technology like Servlet, REST API, etc. Now each of these web technologies has some techniques or steps that are to be implemented irrespective of the application that we are developing. Then we build our customized application.</p>
+</div>
+<div class="paragraph">
+<p>So in this case, the definite code that the web technology has to execute can be put in an abstract class. Can we have an interface for this? No. This is because the interface cannot have an implementation.</p>
+</div>
+<div class="paragraph">
+<p><strong>Contract Only Interfaces</strong></p>
+</div>
+<div class="paragraph">
+<p>We know that interfaces have contracts or methods that are a part of them. These methods are only prototypes. We have to implement these interfaces in a class and then override the methods.</p>
+</div>
+<div class="paragraph">
+<p>Now consider the Map interface of Java Collections Framework. Many classes like HashMap, TreeMap, HashTable, etc. implement this interface. Each of these classes has a different implementation. They do not have any common behavior that can be represented in the abstract class.</p>
+</div>
+<div class="paragraph">
+<p>So what we do is we design an interface with method prototypes and then implement each of the classes.</p>
+</div>
+<div class="paragraph">
+<p>This way we should weigh each factor properly before we choose between an abstract class and an interface.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="img6.PNG" alt="img6">
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_encapsulation">Encapsulation</h2>
+<div class="sectionbody">
+<hr>
+<div class="paragraph">
+<p>Encapsulation is one of the key features of object-oriented programming. Encapsulation refers to the bundling of fields and methods inside a single class.</p>
+</div>
+<div class="paragraph">
+<p>It prevents outer classes from accessing and changing fields and methods of a class. This also helps to achieve data hiding.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">class Area {
+
+  // fields to calculate area
+  int length;
+  int breadth;
+
+  // constructor to initialize values
+  Area(int length, int breadth) {
+    this.length = length;
+    this.breadth = breadth;
+  }
+
+  // method to calculate area
+  public void getArea() {
+    int area = length * breadth;
+    System.out.println("Area: " + area);
+  }
+}
+
+class Main {
+  public static void main(String[] args) {
+
+    // create object of Area
+    // pass value of length and breadth
+    Area rectangle = new Area(5, 6);
+    rectangle.getArea();
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the above example, we have created a class named Area. The main purpose of this class is to calculate the area.</p>
+</div>
+<div class="paragraph">
+<p>To calculate an area, we need two variables: length and breadth and a method: getArea(). Hence, we bundled these fields and methods inside a single class.</p>
+</div>
+<div class="paragraph">
+<p>Here, the fields and methods can be accessed from other classes as well. Hence, this is not data hiding.</p>
+</div>
+<div class="paragraph">
+<p>This is only encapsulation.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Note: People often consider encapsulation as data hiding, but that's not entirely true.
+Encapsulation refers to the bundling of related fields and methods together. This can be used to achieve data hiding. Encapsulation in itself is not data hiding.</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We can also achieve data hiding using encapsulation. In the above example, if we change the length and breadth variable into private, then the access to these fields is restricted.</p>
+</div>
+<div class="paragraph">
+<p>And, they are kept hidden from outer classes. This is called data hiding.</p>
+</div>
+<div class="sect2">
+<h3 id="_data_hiding">Data Hiding</h3>
+<div class="paragraph">
+<p>Data hiding is a way of restricting the access of our data members by hiding the implementation details. Encapsulation also provides a way for data hiding.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_association_in_java">Association in Java</h2>
+<div class="sectionbody">
+<hr>
+<div class="paragraph">
+<p>Association in Java defines the connection between two classes that are set up through their objects. Association manages one-to-one, one-to-many, and many-to-many relationships. In Java, the multiplicity between objects is defined by the Association. It shows how objects communicate with each other and how they use the functionality and services provided by that communicated object. Association manages one-to-one, one-to-many, many-to-one and many-to-many relationships.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s take an example of each relationship to manage by the Association.</p>
+</div>
+<div class="paragraph">
+<p>A person can have only one passport. It defines the one-to-one
+If we talk about the Association between a College and Student, a College can have many students. It defines the one-to-many
+A state can have several cities, and those cities are related to that single state. It defines the many-to-one
+A single student can associate with multiple teachers, and multiple students can also be associated with a single teacher. Both are created or deleted independently, so it defines the many-to-many</p>
+</div>
+<div class="sect2">
+<h3 id="_types_of_association">Types of Association</h3>
+<div class="paragraph">
+<p>In Java, two types of Association are possible:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>IS-A Association</p>
+</li>
+<li>
+<p>HAS-A Association</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Aggregation</p>
+</li>
+<li>
+<p>Composition</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div class="sect3">
+<h4 id="_1_is_a_association">1. IS-A Association</h4>
+<div class="paragraph">
+<p>The IS-A Association is also referred to as Inheritance.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_2_has_a_association">2. HAS-A Association</h4>
+<div class="paragraph">
+<p>The HAS-A Association is further classified into two parts, i.e., Aggregation and Composition.</p>
+</div>
+<div class="sect4">
+<h5 id="_1_aggregation">1. Aggregation</h5>
+<div class="paragraph">
+<p>In Java, the Aggregation association defines the HAS-A relationship. Aggregation follows the one-to-one or one-way relationship. If two entities are in the aggregation composition, and one entity fails due to some error, it will not affect the other entity.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s take the example of a toy and its battery. The battery belongs to a toy, and if the toy breaks and deletes from our database, the battery will still remaining in our database, and it may still be working. So in Aggregation, objects always have their own lifecycles when the ownership exists there.</p>
+</div>
+<div class="paragraph">
+<p>There is a college that has several courses like BSC-CS, MCA, and Poly. Every course has several students, so we make a College class that has a reference to the object or list of objects of the Course class. That means College class is associated with Course class through the objects. Course class also has a reference to the object or list of objects of Student class means it is associated with Student class through its object and defines the HAS-A relationship.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_2_composition">2. Composition</h5>
+<div class="paragraph">
+<p>A restricted form of the Aggregation where the entities are strongly dependent on each other. Unlike Aggregation, Composition represents the part-of relationship. When there is an aggregation between two entities, the aggregate object can exist without the other entity, but in the case of Composition, the composed object can&#8217;t exist.</p>
+</div>
+<div class="paragraph">
+<p>We create a class Mobile that contains variables, i.e., name, ram and rom. We also create a class MobileStore that has a reference to refer to the list of mobiles. A mobile store can have more than one mobile. So, if a mobile store is destroyed, then all mobiles within that particular mobile store will also be destroyed because mobiles cannot exist without a mobile store. The relationship between the mobile store and mobiles is Composition.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_when_use_aggregation">When use Aggregation?</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Code reuse is also best achieved by aggregation when there is no is-a relationship.</p>
+</li>
+<li>
+<p>Inheritance should be used only if the relationship is-a is maintained throughout the lifetime of the objects involved; otherwise, aggregation is the best choice.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_composition_in_java">Composition in Java</h2>
+<div class="sectionbody">
+<hr>
+<div class="paragraph">
+<p>The composition is a design technique in java to implement a has-a relationship. Java Inheritance is used for code reuse purposes and the same we can do by using composition. The composition is achieved by using an instance variable that refers to other objects. If an object contains the other object and the contained object cannot exist without the existence of that object, then it is called composition. In more specific words composition is a way of describing reference between two or more classes using instance variable and an instance should be created before it is used.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="img7.png" alt="img7">
+</div>
+</div>
+<div class="paragraph">
+<p>The benefits of using Composition is as follows:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Composition allows the reuse of code.</p>
+</li>
+<li>
+<p>Java doesn’t support multiple inheritances but by using composition we can achieve it.</p>
+</li>
+<li>
+<p>Composition offers better test-ability of a class.</p>
+</li>
+<li>
+<p>By using composition, we are flexible enough to replace the implementation of a composed class with a better and improved version.</p>
+</li>
+<li>
+<p>By using composition, we can also change the member objects at run time, to dynamically change the behaviour of your program.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Do remember the certain key points of composition in java which are as follows:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>It represents a has-a relationship.</p>
+</li>
+<li>
+<p>In composition, both entities are dependent on each other.</p>
+</li>
+<li>
+<p>When there is a composition between two entities, the composed object cannot exist without the other entity. For example, A library can have no. of books on the same or different subjects. So, If the Library gets destroyed then - All books within that particular library will be destroyed. This is because books can not exist without a library.</p>
+</li>
+<li>
+<p>The composition is achieved by using an instance variable that refers to other objects.
+We have to favour Composition over Inheritance.</p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="_real_life_example_library_system">Real-life Example: Library system</h3>
+<div class="listingblock">
+<div class="content">
+<pre>Let’s understand the composition in Java with the example of books and library. In this example, we create a class Book that contains data members like author, and title and create another class Library that has a reference to refer to the list of books. A library can have no. of books on the same or different subjects. So, If the Library gets destroyed then All books within that particular library will be destroyed. i.e., books can not exist without a library. The relationship between the library and books is composition.</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">// Java program to Illustrate Concept of Composition
+
+// Importing required classes
+import java.io.*;
+import java.util.*;
+
+// Class 1
+// Helper class
+// Book class
+class Book {
+
+	// Member variables of this class
+	public String title;
+	public String author;
+
+	// Constructor of this class
+	Book(String title, String author)
+	{
+
+		// This keyword refers top current instance
+		this.title = title;
+		this.author = author;
+	}
+}
+
+// Class 2
+// Helper class
+// Library class contains list of books.
+class Library {
+
+	// Reference to refer to list of books.
+	private final List&lt;Book&gt; books;
+
+	// Constructor of this class
+	Library(List&lt;Book&gt; books)
+	{
+
+		// This keyword refers to current instance itself
+		this.books = books;
+	}
+
+	// Method of this class
+	// Getting the list of books
+	public List&lt;Book&gt; getListOfBooksInLibrary()
+	{
+		return books;
+	}
+}
+
+// Class 3
+// Main class
+class GFG {
+
+	// Main driver method
+	public static void main(String[] args)
+	{
+
+		// Creating the objects of class 1 (Book class)
+		// inside main() method
+		Book b1
+			= new Book("EffectiveJ Java", "Joshua Bloch");
+		Book b2
+			= new Book("Thinking in Java", "Bruce Eckel");
+		Book b3 = new Book("Java: The Complete Reference",
+						"Herbert Schildt");
+
+		// Creating the list which contains the
+		// no. of books.
+		List&lt;Book&gt; book = new ArrayList&lt;Book&gt;();
+
+		// Adding books to List object
+		// using standard add() method
+		book.add(b1);
+		book.add(b2);
+		book.add(b3);
+
+		// Creating an object of class 2
+		Library library = new Library(book);
+
+		// Calling method of class 2 and storing list of
+		// books in List Here List is declared of type
+		// Books(user-defined)
+		List&lt;Book&gt; books
+			= library.getListOfBooksInLibrary();
+
+		// Iterating over for each loop
+		for (Book bk : books) {
+
+			// Print and display the title and author of
+			// books inside List object
+			System.out.println("Title : " + bk.title
+							+ " and "
+							+ " Author : " + bk.author);
+		}
+	}
+}</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_apart_from_these_concepts_there_are_some_other_terms_which_are_used_in_object_oriented_design">Apart from these concepts, there are some other terms which are used in Object-Oriented design:</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Coupling</p>
+</li>
+<li>
+<p>Cohesion</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Coupling</strong></p>
+</div>
+<div class="paragraph">
+<p>Coupling refers to the knowledge or information or dependency of another class. It arises when classes are aware of each other. If a class has the details information of another class, there is strong coupling. In Java, we use private, protected, and public modifiers to display the visibility level of a class, method, and field. We can use interfaces for the weaker coupling because there is no concrete implementation.</p>
+</div>
+<div class="paragraph">
+<p><strong>Cohesion</strong></p>
+</div>
+<div class="paragraph">
+<p>Cohesion refers to the level of a component which performs a single well-defined task. A single well-defined task is done by a highly cohesive method. The weakly cohesive method will split the task into separate parts. The java.io package is a highly cohesive package because it has I/O related classes and interface. However, the java.util package is a weakly cohesive package because it has unrelated classes and interfaces.</p>
+</div>
+<div class="paragraph">
+<p><strong>Association</strong></p>
+</div>
+<div class="paragraph">
+<p>Association represents the relationship between the objects. Here, one object can be associated with one object or many objects. There can be four types of association between the objects:</p>
+</div>
+<div class="paragraph">
+<p>One to One
+One to Many
+Many to One, and
+Many to Many
+Let&#8217;s understand the relationship with real-time examples. For example, a country can have one prime minister (one to one), and a prime minister can have many ministers (one to many). Also, many MP&#8217;s can have one prime minister (many to one), and many ministers can have many departments (many to many).</p>
+</div>
+<div class="paragraph">
+<p>Association can be unidirectional or bidirectional.</p>
+</div>
+<div class="paragraph">
+<p><strong>Aggregation</strong></p>
+</div>
+<div class="paragraph">
+<p>Aggregation is a way to achieve Association. Aggregation represents the relationship where one object contains other objects as a part of its state. It represents the weak relationship between objects. It is also termed as a has-a relationship in Java. Like, inheritance represents the is-a relationship. It is another way to reuse objects.</p>
+</div>
+<div class="paragraph">
+<p><strong>Composition</strong></p>
+</div>
+<div class="paragraph">
+<p>The composition is also a way to achieve Association. The composition represents the relationship where one object contains other objects as a part of its state. There is a strong relationship between the containing object and the dependent object. It is the state where containing objects do not have an independent existence. If we delete the parent object, all the child objects will be deleted automatically.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2024-11-14 14:39:40 +0530
+</div>
+</div>
+</body>
+</html>

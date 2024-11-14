@@ -8,12 +8,10 @@ jobs:
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v2
-    - name: Install Ruby
-      run: sudo apt install ruby-full
-    - name: Install Asciidoctor
-      run: sudo gem install asciidoctor-reducer
     - name: Create HTMLs
       run: | 
+        sudo apt-get install ruby-full
+        sudo gem install asciidoctor-reducer
         cd ~
         > README-NEW.md
         echo "# Contents" >> README-NEW.md

@@ -34,12 +34,12 @@ jobs:
 
               # Create master.adoc file
               master_adoc="$dir/master.adoc"
-              > $dir/master.adoc
+              cat $dir/master.adoc
 
               # Append all .adoc files in the directory to the master.adoc file
               find "$dir" -name "*.adoc" | while IFS= read -r file; do
                 echo "include::${file}[]" >> "$master_adoc"
-              done
+              dones
 
               # Generate HTML from master.adoc
               asciidoctor "$master_adoc"

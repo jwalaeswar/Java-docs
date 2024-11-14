@@ -10,8 +10,8 @@ jobs:
       uses: actions/checkout@v2
     - name: Install Ruby
       run: sudo apt install ruby-full
-      - name: Install Asciidoctor
-        run: sudo gem install asciidoctor
+    - name: Install Asciidoctor
+      run: sudo gem install asciidoctor-reducer
     - name: Create HTMLs
       run: | 
         cd ~

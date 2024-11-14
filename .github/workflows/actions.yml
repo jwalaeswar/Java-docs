@@ -68,8 +68,8 @@ jobs:
                   if ! echo "$html_file" | grep -q "master.html"; then
                     clean_file=$(basename "$html_file")
                     echo "### [clean_file]($html_file)" >> README-HTML.md
-                    asciidoctor-reducer -o "$dir/$clean_file.adoc"
-                    echo "### [clean_file]($dir/$clean_file.adoc)" >> README.md
+                    #asciidoctor-reducer -o "$dir/$clean_file.adoc"
+                    #echo "### [clean_file]($dir/$clean_file.adoc)" >> README.md
                   fi
                 fi
               done

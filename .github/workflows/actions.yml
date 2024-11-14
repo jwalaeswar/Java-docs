@@ -9,7 +9,7 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v3
     - name: Install Asciidoctor
-      run: sudo gem install asciidoctor
+      run: sudo apt-get install asciidoctor
     - name: Create HTMLs
       run: | 
         cd ~
@@ -49,6 +49,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: html-output
-          path: '**/*.html'  # Upload all generated HTML files
-Explanation:
-          
+          path: '**/*.html'

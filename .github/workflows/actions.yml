@@ -8,15 +8,12 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
-        
       - name: Set up Ruby (for Asciidoctor)
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.0'
-
       - name: Install Asciidoctor
         run: gem install asciidoctor
-
       - name: Create HTMLs
         run: | 
           cd ~
@@ -51,7 +48,6 @@ jobs:
             fi
           done
           cat README-NEW.md
-
         - name: Upload HTML files as artifacts
           uses: actions/upload-artifact@v2
           with:

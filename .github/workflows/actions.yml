@@ -25,7 +25,7 @@ jobs:
           # Create or clear README-NEW.md
           > README-NEW.md
           echo "# Contents" >> README-NEW.md
-
+          pwd
           # Iterate over directories containing .adoc files (up to maxdepth 2)
           for dir in $(find . -maxdepth 2 -type f -name "*.adoc" -exec dirname {} \; | sort -u); do
             # Only process directories one level deep in the repo
@@ -44,6 +44,7 @@ jobs:
               done
               cat  "$dir/master.adoc"
               # Generate HTML from master.adoc
+              pwd
               asciidoctor "$master_adoc"
 
               # Remove the temporary master.adoc file after processing

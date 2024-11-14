@@ -50,7 +50,7 @@ jobs:
                   echo "include::$cleaned_file[]" >> "$master_adoc"
                 fi
               done
-              cat  "$dir/master.adoc"
+              cat  "$dir/master-raw.adoc"
               echo "$master_adoc"
               # Generate HTML from master.adoc
               pwd
@@ -60,16 +60,17 @@ jobs:
               rm "$master_adoc"
 
               # Add section for this directory in README-NEW.md
-              echo "## [$dir] ($dir/master.html)" >> README-NEW.md
-              echo "## [$dir] ($dir/master.adoc)" >> README.md
+              echo "## [cleaned_dir] ($dir/master.html)" >> README-HTML.md
+              echo "## [cleaned_dir] ($dir/master.adoc)" >> README.md
               asciidoctor **/*.adoc
               # Find all HTML files in the directory and append them to README-NEW.md
               for html_file in $(find "$dir" -name "*.html" | sort); do
                 if [ -f "$html_file" ]; then
                   if ! echo "$html_file" | grep -q "master.html"; then
                     clean_file=$(basename "$html_file")
-                    echo "### [$html_file]($html_file)" >> README-NEW.md
+                    echo "### [clean_file]($html_file)" >> README-HTML.md
                     asciidoctor-reducer -o "$dir/$clean_file.adoc"
+                    echo "### [clean_file]($dir/$clean_file.adoc)" >> README.md
                   fi
                 fi
               done

@@ -8,8 +8,8 @@ jobs:
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v3
-    - name: Install Asciidoctor Reducer
-      run: sudo gem install asciidoctor-reducer
+    - name: Install Ruby
+      run: sudo apt install ruby-full
     - name: Install Asciidoctor
       run: sudo gem install asciidoctor
     - name: Create HTMLs

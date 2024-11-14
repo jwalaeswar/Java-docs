@@ -38,8 +38,12 @@ jobs:
 
               # Append all .adoc files in the directory to the master.adoc file
               for file in $(find "$dir" -name "*.adoc"); do
-                echo "include::${file}[]" >> "$master_adoc"
-                echo "" >> "$master_adoc"
+                if echo "$file" | grep -q "master.adoc"; then
+                  
+                else
+                  echo "include::${file}[]" >> "$master_adoc"
+                  echo "" >> "$master_adoc"
+                fi
               done
 
               # Generate HTML from master.adoc

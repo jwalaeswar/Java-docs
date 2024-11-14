@@ -26,6 +26,7 @@ jobs:
           > README-NEW.md
           echo "# Contents" >> README-NEW.md
           pwd
+          ls
           # Iterate over directories containing .adoc files (up to maxdepth 2)
           for dir in $(find . -maxdepth 2 -type f -name "*.adoc" -exec dirname {} \; | sort -u); do
             # Only process directories one level deep in the repo

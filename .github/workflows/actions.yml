@@ -39,7 +39,7 @@ jobs:
               # Append all .adoc files in the directory to the master.adoc file
               find "$dir" -name "*.adoc" | while IFS= read -r file; do
                 echo "include::${file}[]" >> "$master_adoc"
-              dones
+              done
 
               # Generate HTML from master.adoc
               asciidoctor "$master_adoc"

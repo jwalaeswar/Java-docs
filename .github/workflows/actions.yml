@@ -45,7 +45,7 @@ jobs:
               # Append all .adoc files in the directory to the master.adoc file
               for file in $(find "$dir" -maxdepth 1 -type f -name "*.adoc" | sort -u); do
                 echo "$file"
-                if ! echo "$file" | grep -q "master.adoc"; then
+                if ! echo "$file" | grep -q "master"; then
                   cleaned_file=$(basename "$file")
                   echo "include::$cleaned_file[]" >> "$master_adoc"
                 fi
@@ -57,7 +57,6 @@ jobs:
               asciidoctor "$master_adoc"
               asciidoctor-reducer -o "$dir/master.adoc" "$master_adoc"
               # Remove the temporary master.adoc file after processing
-              rm "$master_adoc"
 
               # Add section for this directory in README-NEW.md
               echo "## [cleaned_dir] ($dir/master.html)" >> README-HTML.md

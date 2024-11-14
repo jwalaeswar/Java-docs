@@ -48,6 +48,7 @@ jobs:
                 fi
               done
               cat  "$dir/master.adoc"
+              echo "$master_adoc"
               # Generate HTML from master.adoc
               pwd
               asciidoctor "$master_adoc"
@@ -72,6 +73,8 @@ jobs:
           # Print the generated README content for debugging
           cat README-NEW.md
           git add .
+          git config user.name "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
           git commit -m "github-action commit"
           git push origin main
 

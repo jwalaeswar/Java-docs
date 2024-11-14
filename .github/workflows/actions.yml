@@ -38,13 +38,11 @@ jobs:
 
               # Append all .adoc files in the directory to the master.adoc file
               for file in $(find "$dir" -maxdepth 1 -type f -name "*.adoc" | sort -u); do
-                echo "$file"
                 if ! echo "$file" | grep -q "master.adoc"; then
-                  echo "include::${file}[]" >> "$master_adoc"
-                  echo "" >> "$master_adoc"
+                  echo "include::$file[]" >> "$master_adoc"
                 fi
               done
-
+              cat  "$dir/master.adoc"
               # Generate HTML from master.adoc
               asciidoctor "$master_adoc"
 
@@ -78,4 +76,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: README-NEW
-          path: '**/*.md'
+          path: '~/*.md'

@@ -16,7 +16,7 @@ jobs:
 
       - name: Install Asciidoctor
         run: gem install asciidoctor
-        
+
       - name: Create HTMLs
         run: | 
           cd ~

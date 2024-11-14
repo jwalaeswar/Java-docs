@@ -55,8 +55,7 @@ jobs:
               # Generate HTML from master.adoc
               pwd
               asciidoctor "$master_adoc"
-              asciidoctor-reducer "$dir/master-raw.adoc" > "$master_adoc"
-              asciidoctor-reducer -o "$dir/master.adoc" "$master_adoc"
+              asciidoctor-reducer "$master_adoc" > "$dir/master.adoc" 
               # Remove the temporary master.adoc file after processing
 
               # Add section for this directory in README-NEW.md

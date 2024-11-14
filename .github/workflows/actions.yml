@@ -13,7 +13,7 @@ jobs:
         with:
           ruby-version: '3.0'
       - name: Install Asciidoctor
-        run: gem install asciidoctor
+        run: sudo apt-get install asciidoctor
       - name: Create HTMLs
         run: | 
           cd ~

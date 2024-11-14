@@ -37,7 +37,8 @@ jobs:
               echo "=  $dir" > "$master_adoc"  # Add a title to the master file
 
               # Append all .adoc files in the directory to the master.adoc file
-              for file in $(find "$dir" -name "*.adoc"); do
+              for file in $(find "$dir" -maxdepth 1 -type f -name "*.adoc" | sort -u); do
+                echo "$file"
                 if ! echo "$file" | grep -q "master.adoc"; then
                   echo "include::${file}[]" >> "$master_adoc"
                   echo "" >> "$master_adoc"
@@ -56,7 +57,9 @@ jobs:
               # Find all HTML files in the directory and append them to README-NEW.md
               for html_file in $(find "$dir" -name "*.html" | sort); do
                 if [ -f "$html_file" ]; then
-                  echo "### [$html_file](~/$html_file)" >> README-NEW.md
+                  if ! echo "$html_file" | grep -q "master.html"; then
+                    echo "### [$html_file](~/$html_file)" >> README-NEW.md
+                  fi
                 fi
               done
             fi
@@ -70,3 +73,9 @@ jobs:
         with:
           name: html-output
           path: '**/*.html'
+
+      - name: Upload README file as artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: README-NEW
+          path: '**/*.md'

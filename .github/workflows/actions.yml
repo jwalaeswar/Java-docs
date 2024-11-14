@@ -36,14 +36,15 @@ jobs:
 
               # Create master.adoc file
               master_adoc="$dir/master.adoc"
-              echo "=  $dir" > "$master_adoc"  # Add a title to the master file
+              cleaned_dir=$(basename "$dir")
+              echo "=  $cleaned_dir" > "$master_adoc"  # Add a title to the master file
 
               # Append all .adoc files in the directory to the master.adoc file
               for file in $(find "$dir" -maxdepth 1 -type f -name "*.adoc" | sort -u); do
+                echo "$file"
                 if ! echo "$file" | grep -q "master.adoc"; then
-                  cleaned_dir=$(basename "$dir")
                   cleaned_file=$(basename "$file")
-                  echo "include::$cleaned_dir/$cleaned_file[]" >> "$master_adoc"
+                  echo "include::$cleaned_file[]" >> "$master_adoc"
                 fi
               done
               cat  "$dir/master.adoc"
@@ -56,7 +57,7 @@ jobs:
 
               # Add section for this directory in README-NEW.md
               echo "## [$dir] ($dir/master.html)" >> README-NEW.md
-              asciidoctor *.adoc
+              asciidoctor **/*.adoc
               # Find all HTML files in the directory and append them to README-NEW.md
               for html_file in $(find "$dir" -name "*.html" | sort); do
                 if [ -f "$html_file" ]; then

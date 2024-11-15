@@ -1,4 +1,5 @@
 =  1.Fundamentals
+---
 == Basic Syntax
 ---
 Data Types are divided into two group

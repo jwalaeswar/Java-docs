@@ -1,4 +1,5 @@
 =  2.GettingDeeper
+---
 == Memory Management
 ---
 In Java, memory management is the process of allocation and de-allocation of objects, called Memory management. Java does memory management automatically. Java uses an automatic memory management system called a *garbage collector*. Thus, we are not required to implement memory management logic in our application. Java memory management divides into two major parts:

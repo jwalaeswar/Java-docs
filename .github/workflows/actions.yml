@@ -83,7 +83,7 @@ jobs:
                   fi
                 fi
               done
-              cat "README-HTML.md"
+              echo "README-HTML.md"
               cat README-HTML.md
               for adoc_file in $(find $dir -maxdepth 1 -type f -name "*.adoc" | sort -u); do
                 if [ -f "$adoc_file" ]; then

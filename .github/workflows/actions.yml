@@ -70,6 +70,7 @@ jobs:
                 if [ -f "$html_file" ]; then
                   if ! echo "$html_file" | grep -q "master.html" && ! echo "$html_file" | grep -q "master-raw.html"; then
                     clean_file=$(basename "$html_file")
+                    echo "$clean_file" 
                     if [["$clean_file" == *-raw*]]; then
                       first_value="${clean_file%%-*}"
                       if [[ "$first_value" == *.* ]]; then
@@ -82,7 +83,8 @@ jobs:
                   fi
                 fi
               done
-
+              cat "README-HTML.md"
+              cat README-HTML.md
               for adoc_file in $(find $dir -maxdepth 1 -type f -name "*.adoc" | sort -u); do
                 if [ -f "$adoc_file" ]; then
                   if ! echo "$adoc_file" | grep -q "master.adoc" && ! echo "$adoc_file" | grep -q "master-raw.adoc"; then

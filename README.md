@@ -1,12 +1,7 @@
 # Contents
 ## [Fundamentals](./1.Fundamentals/master.adoc)
-## [Basics-raw.html](./1.Fundamentals/master.adoc)
-## [OOPS-raw.html](./1.Fundamentals/master.adoc)
-## [ExceptionHandling-raw.html](./1.Fundamentals/master.adoc)
 - [1.Basics](./1.Fundamentals/1.Basics.adoc)
 - [2.OOPS](./1.Fundamentals/2.OOPS.adoc)
 - [3.ExceptionHandling](./1.Fundamentals/3.ExceptionHandling.adoc)
 ## [GettingDeeper](./2.GettingDeeper/master.adoc)
-## [html](./2.GettingDeeper/master.adoc)
-## [html](./2.GettingDeeper/master.adoc)
 - [MemoryManagement](./2.GettingDeeper/MemoryManagement.adoc)

@@ -1,2 +1,2 @@
-=  2.GettingDeeper\n
-include::MemoryManagement-raw.adoc[]\n
+=  2.GettingDeeper
+include::MemoryManagement-raw.adoc[]

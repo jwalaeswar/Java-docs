@@ -52,10 +52,10 @@ jobs:
 
               if [[ "$cleaned_dir" == *.* ]]; then
                 after_dot="${cleaned_dir#*.}"
-                echo "== [$after_dot]($dir/master.html)" >> README-HTML.adoc
+                echo "== $dir/master.html[$after_dot]" >> README-HTML.adoc
                 echo "## [$after_dot]($dir/master.adoc)" >> README.md
               else
-                echo "== [$cleaned_dir]($dir/master.html)" >> README-HTML.adoc
+                echo "== $dir/master.html[$cleaned_dir]" >> README-HTML.adoc
                 echo "## [$cleaned_dir]($dir/master.adoc)" >> README.md
               fi
               
@@ -69,12 +69,12 @@ jobs:
                       asciidoctor-reducer "$dir/$clean_file" > "$dir/$first_value.adoc" 
                       asciidoctor "$dir/$clean_file"
                       echo "- [$after_dot]($dir/$first_value.adoc)" >> README.md
-                      echo "- [$after_dot]($dir/$first_value-raw.html)" >> README-HTML.adoc
+                      echo "- $dir/$first_value-raw.html[$after_dot]" >> README-HTML.adoc
                     else
                       asciidoctor-reducer "$dir/$clean_file" > "$dir/$first_value.adoc" 
                       asciidoctor "$dir/$clean_file"
                       echo "- [$first_value]($dir/$first_value.adoc)" >> README.md
-                      echo "- [$first_value]($dir/$first_value-raw.html)" >> README-HTML.adoc
+                      echo "- $dir/$first_value-raw.html[$first_value]" >> README-HTML.adoc
                     fi
                   fi
                 fi

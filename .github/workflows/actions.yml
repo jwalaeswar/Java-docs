@@ -69,11 +69,12 @@ jobs:
                 if [ -f "$html_file" ]; then
                   if ! echo "$html_file" | grep -q "master.html" && ! echo "$html_file" | grep -q "master-raw.html"; then
                     clean_file=$(basename "$html_file")
-                    if [[ "$clean_file" == *.* ]]; then
-                      after_dot="${clean_file#*.}"
+                    filename_without_extension=$(echo "$clean_file" | sed 's/\.html$//')
+                    if [[ "$filename_without_extension" == *.* ]]; then
+                      after_dot="${filename_without_extension#*.}"
                       echo "- [$after_dot]($html_file)" >> README-HTML.md
                     else
-                      echo "- [$clean_file]($html_file)" >> README-HTML.md
+                      echo "- [$filename_without_extension]($html_file)" >> README-HTML.md
                     fi
                   fi
                 fi

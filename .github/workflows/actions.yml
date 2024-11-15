@@ -36,9 +36,15 @@ jobs:
 
               master_adoc="$dir/master-raw.adoc"
               cleaned_dir=$(basename "$dir")
-              echo "=  $cleaned_dir" > "$master_adoc"
-              echo "" >> "$master_adoc"
-
+              if [[ "$cleaned_dir" == *.* ]]; then
+                after_dot="${cleaned_dir#*.}"
+                echo "=  $after_dot" > "$master_adoc"
+                echo "" >> "$master_adoc"
+              else
+                echo "=  $cleaned_dir" > "$master_adoc"
+                echo "" >> "$master_adoc"
+              fi
+              
               for file in $(find "$dir" -maxdepth 1 -type f -name "*.adoc" | sort -u); do
                 if ! echo "$file" | grep -q "master" && echo "$file" | grep -q "raw"; then
                   cleaned_file=$(basename "$file")

@@ -26,7 +26,7 @@ jobs:
           find . -type f -name "*.html" -exec rm -f {} \;
           > README-HTML.md
           > README.md
-          echo "# Contents" >> README-HTML.md
+          echo "= Contents" >> README-HTML.adoc
           echo "# Contents" >> README.md
 
           for dir in $(find . -maxdepth 2 -type f -name "*.adoc" -exec dirname {} \; | sort -u); do
@@ -52,10 +52,10 @@ jobs:
 
               if [[ "$cleaned_dir" == *.* ]]; then
                 after_dot="${cleaned_dir#*.}"
-                echo "## [$after_dot]($dir/master.html)" >> README-HTML.md
+                echo "== [$after_dot]($dir/master.html)" >> README-HTML.adoc
                 echo "## [$after_dot]($dir/master.adoc)" >> README.md
               else
-                echo "## [$cleaned_dir]($dir/master.html)" >> README-HTML.md
+                echo "== [$cleaned_dir]($dir/master.html)" >> README-HTML.adoc
                 echo "## [$cleaned_dir]($dir/master.adoc)" >> README.md
               fi
               
@@ -69,19 +69,19 @@ jobs:
                       asciidoctor-reducer "$dir/$clean_file" > "$dir/$first_value.adoc" 
                       asciidoctor "$dir/$clean_file"
                       echo "- [$after_dot]($dir/$first_value.adoc)" >> README.md
-                      echo "- [$after_dot]($dir/$first_value-raw.html)" >> README-HTML.md
+                      echo "- [$after_dot]($dir/$first_value-raw.html)" >> README-HTML.adoc
                     else
                       asciidoctor-reducer "$dir/$clean_file" > "$dir/$first_value.adoc" 
                       asciidoctor "$dir/$clean_file"
                       echo "- [$first_value]($dir/$first_value.adoc)" >> README.md
-                      echo "- [$first_value]($dir/$first_value-raw.html)" >> README-HTML.md
+                      echo "- [$first_value]($dir/$first_value-raw.html)" >> README-HTML.adoc
                     fi
                   fi
                 fi
               done
             fi
           done
-
+          asciidoctor README-HTML.adoc
           git add .
           git config user.name "github-actions"
           git config user.email "github-actions@users.noreply.github.com"

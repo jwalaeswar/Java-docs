@@ -36,12 +36,12 @@ jobs:
 
               master_adoc="$dir/master-raw.adoc"
               cleaned_dir=$(basename "$dir")
-              echo "=  $cleaned_dir\n" > "$master_adoc"
+              echo "=  $cleaned_dir" > "$master_adoc"
 
               for file in $(find "$dir" -maxdepth 1 -type f -name "*.adoc" | sort -u); do
                 if ! echo "$file" | grep -q "master" && echo "$file" | grep -q "raw"; then
                   cleaned_file=$(basename "$file")
-                  echo "include::$cleaned_file[]\n" >> "$master_adoc"
+                  echo "include::$cleaned_file[]" >> "$master_adoc"
                 fi
               done
               cat  "$dir/master-raw.adoc"
@@ -53,7 +53,7 @@ jobs:
               if [[ "$cleaned_dir" == *.* ]]; then
                 after_dot="${cleaned_dir#*.}"
                 echo $after_dot
-                
+
                 echo "## [$after_dot]($dir/master.html)" >> README-HTML.md
                 echo "## [$after_dot]($dir/master.adoc)" >> README.md
               else
@@ -71,10 +71,8 @@ jobs:
                     if [[ "$clean_file" == *.* ]]; then
                       after_dot="${clean_file#*.}"
                       echo "## [$after_dot]($dir/master.html)" >> README-HTML.md
-                      echo "## [$after_dot]($dir/master.adoc)" >> README.md
                     else
                       echo "## [$clean_file]($dir/master.html)" >> README-HTML.md
-                      echo "## [$clean_file]($dir/master.adoc)" >> README.md
                     fi
                     echo "- [$clean_file]($html_file)" >> README-HTML.md
                   fi

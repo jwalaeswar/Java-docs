@@ -1,4 +1,4 @@
-=  1.Fundamentals
+=  Fundamentals
 
 include::1.Basics-raw.adoc[]
 

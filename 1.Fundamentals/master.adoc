@@ -1,4 +1,4 @@
-=  1.Fundamentals
+=  Fundamentals
 
 == Basic Syntax
 ---

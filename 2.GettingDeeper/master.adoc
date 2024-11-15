@@ -1,4 +1,4 @@
-=  2.GettingDeeper
+=  GettingDeeper
 
 == Memory Management
 ---

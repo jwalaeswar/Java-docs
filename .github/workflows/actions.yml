@@ -39,7 +39,6 @@ jobs:
               echo "=  $cleaned_dir\n" > "$master_adoc"
 
               for file in $(find "$dir" -maxdepth 1 -type f -name "*.adoc" | sort -u); do
-                echo "$file"
                 if ! echo "$file" | grep -q "master" && echo "$file" | grep -q "raw"; then
                   cleaned_file=$(basename "$file")
                   echo "include::$cleaned_file[]\n" >> "$master_adoc"
@@ -53,14 +52,14 @@ jobs:
 
               echo "## [$cleaned_dir]($dir/master.html)" >> README-HTML.md
               echo "## [$cleaned_dir]($dir/master.adoc)" >> README.md
+              cat README.md
               asciidoctor **/*.adoc
 
               for html_file in $(find "$dir" -name "*.html" | sort); do
                 if [ -f "$html_file" ]; then
                   if ! echo "$html_file" | grep -q "master.html" && ! echo "$html_file" | grep -q "master-raw.html"; then
                     clean_file=$(basename "$html_file")
-                    name_value="${*.%%clean_file%%-*}"
-                    echo "- [$name_value]($html_file)" >> README-HTML.md
+                    echo "### [$clean_file]($html_file)" >> README-HTML.md
                   fi
                 fi
               done
@@ -70,9 +69,8 @@ jobs:
                   if ! echo "$adoc_file" | grep -q "master.adoc" && ! echo "$adoc_file" | grep -q "master-raw.adoc"; then
                     clean_file=$(basename "$adoc_file")
                     first_value="${clean_file%%-*}"
-                    name_value="${*.%%clean_file%%-*}"
                     asciidoctor-reducer "$dir/$clean_file" > "$dir/$first_value.adoc" 
-                    echo "- [$name_value]($dir/$first_value.adoc)" >> README.md
+                    echo "### [$first_value]($dir/$first_value.adoc)" >> README.md
                   fi
                 fi
               done

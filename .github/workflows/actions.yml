@@ -72,6 +72,7 @@ jobs:
                       echo "- [$after_dot]($dir/$first_value-raw.html)" >> README-HTML.md
                     else
                       asciidoctor-reducer "$dir/$clean_file" > "$dir/$first_value.adoc" 
+                      asciidoctor "$dir/$clean_file"
                       echo "- [$first_value]($dir/$first_value.adoc)" >> README.md
                       echo "- [$first_value]($dir/$first_value-raw.html)" >> README-HTML.md
                     fi

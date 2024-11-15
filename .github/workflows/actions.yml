@@ -46,29 +46,19 @@ jobs:
                   echo "" >> "$master_adoc"
                 fi
               done
-              cat  "$dir/master-raw.adoc"
-              echo "$master_adoc"
 
               asciidoctor "$master_adoc"
               asciidoctor-reducer "$master_adoc" > "$dir/master.adoc" 
 
               if [[ "$cleaned_dir" == *.* ]]; then
                 after_dot="${cleaned_dir#*.}"
-                echo $after_dot
-
                 echo "## [$after_dot]($dir/master.html)" >> README-HTML.md
                 echo "## [$after_dot]($dir/master.adoc)" >> README.md
               else
                 echo "## [$cleaned_dir]($dir/master.html)" >> README-HTML.md
                 echo "## [$cleaned_dir]($dir/master.adoc)" >> README.md
               fi
-
-              cat README.md
-              asciidoctor **/*.adoc
-
               
-              echo "README-HTML.md"
-              cat README-HTML.md
               for adoc_file in $(find $dir -maxdepth 1 -type f -name "*.adoc" | sort -u); do
                 if [ -f "$adoc_file" ]; then
                   if ! echo "$adoc_file" | grep -q "master.adoc" && ! echo "$adoc_file" | grep -q "master-raw.adoc"; then
@@ -77,6 +67,7 @@ jobs:
                     if [[ "$first_value" == *.* ]]; then
                       after_dot="${first_value#*.}"
                       asciidoctor-reducer "$dir/$clean_file" > "$dir/$first_value.adoc" 
+                      asciidoctor "$dir/$clean_file"
                       echo "- [$after_dot]($dir/$first_value.adoc)" >> README.md
                       echo "- [$after_dot]($dir/$first_value-raw.html)" >> README-HTML.md
                     else

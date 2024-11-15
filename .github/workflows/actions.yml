@@ -64,7 +64,7 @@ jobs:
                 fi
               done
 
-              for adoc_file in $(find "$dir" -name "*.adoc" | sort); do
+              for adoc_file in $(find $dir -maxdepth 1 -type f -name "*.adoc" | sort -u); do
                 if [ -f "$adoc_file" ]; then
                   if ! echo "$adoc_file" | grep -q "master.adoc" && ! echo "$adoc_file" | grep -q "master-raw.adoc"; then
                     clean_file=$(basename "$adoc_file")

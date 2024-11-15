@@ -79,9 +79,10 @@ jobs:
                   fi
                 fi
               done
+              echo "" >> README-HTML.adoc
             fi
           done
-          cat README-HTML.adoc
+
           asciidoctor README-HTML.adoc
           git add .
           git config user.name "github-actions"

@@ -59,7 +59,7 @@ jobs:
                 if [ -f "$html_file" ]; then
                   if ! echo "$html_file" | grep -q "master.html" && ! echo "$html_file" | grep -q "master-raw.html"; then
                     clean_file=$(basename "$html_file")
-                    echo "### [$clean_file]($html_file)" >> README-HTML.md
+                    echo "- [$clean_file]($html_file)" >> README-HTML.md
                   fi
                 fi
               done
@@ -70,7 +70,7 @@ jobs:
                     clean_file=$(basename "$adoc_file")
                     first_value="${clean_file%%-*}"
                     asciidoctor-reducer "$dir/$clean_file" > "$dir/$first_value.adoc" 
-                    echo "### [$first_value]($dir/$first_value.adoc)" >> README.md
+                    echo "- [$first_value]($dir/$first_value.adoc)" >> README.md
                   fi
                 fi
               done

@@ -52,10 +52,10 @@ jobs:
 
               if [[ "$cleaned_dir" == *.* ]]; then
                 after_dot="${cleaned_dir#*.}"
-                echo "== link:$dir/master.html[$after_dot]" >> README-HTML.adoc
+                echo "== link:$dir/master-raw.html[$after_dot]" >> README-HTML.adoc
                 echo "## [$after_dot]($dir/master.adoc)" >> README.md
               else
-                echo "== link:$dir/master.html[$cleaned_dir]" >> README-HTML.adoc
+                echo "== link:$dir/master-raw.html[$cleaned_dir]" >> README-HTML.adoc
                 echo "## [$cleaned_dir]($dir/master.adoc)" >> README.md
               fi
               

@@ -24,7 +24,7 @@ jobs:
       - name: Create HTMLs
         run: |
           find . -type f -name "*.html" -exec rm -f {} \;
-          > README-HTML.md
+          > README-HTML.adoc
           > README.md
           echo "= Contents" >> README-HTML.adoc
           echo "# Contents" >> README.md

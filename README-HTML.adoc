@@ -1,8 +1,8 @@
-== link:./1.Fundamentals/master.html[Fundamentals]
+== link:./1.Fundamentals/master-raw.html[Fundamentals]
 - link:./1.Fundamentals/1.Basics-raw.html[Basics]
 - link:./1.Fundamentals/2.OOPS-raw.html[OOPS]
 - link:./1.Fundamentals/3.ExceptionHandling-raw.html[ExceptionHandling]
 
-== link:./2.GettingDeeper/master.html[GettingDeeper]
+== link:./2.GettingDeeper/master-raw.html[GettingDeeper]
 - link:./2.GettingDeeper/MemoryManagement-raw.html[MemoryManagement]
 

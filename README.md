@@ -1,7 +1,11 @@
 # Contents
-## [1.Fundamentals] (./1.Fundamentals/master.adoc)
+## [1.Fundamentals](./1.Fundamentals/master.adoc)
 ### [1.Basics](./1.Fundamentals/1.Basics.adoc)
+### [1.Basics.adoc](./1.Fundamentals/1.Basics.adoc.adoc)
 ### [2.OOPS](./1.Fundamentals/2.OOPS.adoc)
+### [2.OOPS.adoc](./1.Fundamentals/2.OOPS.adoc.adoc)
 ### [3.ExceptionHandling](./1.Fundamentals/3.ExceptionHandling.adoc)
-## [2.GettingDeeper] (./2.GettingDeeper/master.adoc)
+### [3.ExceptionHandling.adoc](./1.Fundamentals/3.ExceptionHandling.adoc.adoc)
+## [2.GettingDeeper](./2.GettingDeeper/master.adoc)
 ### [MemoryManagement](./2.GettingDeeper/MemoryManagement.adoc)
+### [MemoryManagement.adoc](./2.GettingDeeper/MemoryManagement.adoc.adoc)

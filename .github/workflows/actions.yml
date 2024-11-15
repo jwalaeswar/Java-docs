@@ -50,8 +50,15 @@ jobs:
               asciidoctor "$master_adoc"
               asciidoctor-reducer "$master_adoc" > "$dir/master.adoc" 
 
-              echo "## [$cleaned_dir]($dir/master.html)" >> README-HTML.md
-              echo "## [$cleaned_dir]($dir/master.adoc)" >> README.md
+              if [[ "$cleaned_dir" == *.* ]]; then
+                after_dot="${cleaned_dir#*.}"
+                echo "## [$after_dot]($dir/master.html)" >> README-HTML.md
+                echo "## [$after_dot]($dir/master.adoc)" >> README.md
+              else
+                echo "## [$cleaned_dir]($dir/master.html)" >> README-HTML.md
+                echo "## [$cleaned_dir]($dir/master.adoc)" >> README.md
+              fi
+
               cat README.md
               asciidoctor **/*.adoc
 
@@ -59,6 +66,14 @@ jobs:
                 if [ -f "$html_file" ]; then
                   if ! echo "$html_file" | grep -q "master.html" && ! echo "$html_file" | grep -q "master-raw.html"; then
                     clean_file=$(basename "$html_file")
+                    if [[ "$clean_file" == *.* ]]; then
+                      after_dot="${clean_file#*.}"
+                      echo "## [$after_dot]($dir/master.html)" >> README-HTML.md
+                      echo "## [$after_dot]($dir/master.adoc)" >> README.md
+                    else
+                      echo "## [$clean_file]($dir/master.html)" >> README-HTML.md
+                      echo "## [$clean_file]($dir/master.adoc)" >> README.md
+                    fi
                     echo "- [$clean_file]($html_file)" >> README-HTML.md
                   fi
                 fi

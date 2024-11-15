@@ -71,7 +71,7 @@ jobs:
                   if ! echo "$html_file" | grep -q "master.html" && ! echo "$html_file" | grep -q "master-raw.html"; then
                     clean_file=$(basename "$html_file")
                     echo "$clean_file" 
-                    if [["$clean_file" == *-raw*]]; then
+                    if [["$clean_file" == *raw*]]; then
                       first_value="${clean_file%%-*}"
                       if [[ "$first_value" == *.* ]]; then
                         after_dot="${first_value#*.}"

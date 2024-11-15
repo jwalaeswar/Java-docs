@@ -51,8 +51,8 @@ jobs:
               asciidoctor "$master_adoc"
               asciidoctor-reducer "$master_adoc" > "$dir/master.adoc" 
 
-              echo "## [$cleaned_dir] ($dir/master.html)" >> README-HTML.md
-              echo "## [$cleaned_dir] ($dir/master.adoc)" >> README.md
+              echo "## [$cleaned_dir]($dir/master.html)" >> README-HTML.md
+              echo "## [$cleaned_dir]($dir/master.adoc)" >> README.md
               asciidoctor **/*.adoc
 
               for html_file in $(find "$dir" -name "*.html" | sort); do

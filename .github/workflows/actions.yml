@@ -71,11 +71,10 @@ jobs:
                     clean_file=$(basename "$html_file")
                     if [[ "$clean_file" == *.* ]]; then
                       after_dot="${clean_file#*.}"
-                      echo "## [$after_dot]($dir/master.html)" >> README-HTML.md
+                      echo "- [$after_dot]($html_file)" >> README-HTML.md
                     else
-                      echo "## [$clean_file]($dir/master.html)" >> README-HTML.md
+                      echo "- [$clean_file]($html_file)" >> README-HTML.md
                     fi
-                    echo "- [$clean_file]($html_file)" >> README-HTML.md
                   fi
                 fi
               done

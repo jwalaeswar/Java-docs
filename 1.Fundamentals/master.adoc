@@ -1,5 +1,5 @@
 =  1.Fundamentals
----
+
 == Basic Syntax
 ---
 Data Types are divided into two group
@@ -22,6 +22,7 @@ The equals, hashCode, and toString methods, as well as the private, final fields
 ```
 public record Person (String name, String address) {}
 ```
+
 == OOP
 ---
 Object-oriented programming (OOP) is a programming paradigm based on the concept of objects, which can contain data and code: data in the form of fields (often known as attributes or properties), and code in the form of procedures (often known as methods). In OOP, computer programs are designed by making them out of objects that interact with one another.
@@ -840,6 +841,7 @@ Aggregation is a way to achieve Association. Aggregation represents the relation
 *Composition*
 
 The composition is also a way to achieve Association. The composition represents the relationship where one object contains other objects as a part of its state. There is a strong relationship between the containing object and the dependent object. It is the state where containing objects do not have an independent existence. If we delete the parent object, all the child objects will be deleted automatically.
+
 
 == Exception Handling in Java
 ---

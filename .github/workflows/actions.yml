@@ -69,8 +69,8 @@ jobs:
                   if ! echo "$adoc_file" | grep -q "master.adoc" && ! echo "$adoc_file" | grep -q "master-raw.adoc"; then
                     clean_file=$(basename "$adoc_file")
                     first_value="${clean_file%%-*}"
-                    asciidoctor-reducer "$dir/$clean_file.adoc" > "$dir/$first_value.adoc" 
-                    echo "### [$first_value]($dir/$clean_file.adoc)" >> README.md
+                    asciidoctor-reducer "$dir/$clean_file" > "$dir/$first_value.adoc" 
+                    echo "### [$first_value]($dir/$first_value.adoc)" >> README.md
                   fi
                 fi
               done

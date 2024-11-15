@@ -5,3 +5,4 @@
 ### [3.ExceptionHandling-raw.html](./1.Fundamentals/3.ExceptionHandling-raw.html)
 ## [2.GettingDeeper](./2.GettingDeeper/master.html)
 ### [MemoryManagement-raw.html](./2.GettingDeeper/MemoryManagement-raw.html)
+### [MemoryManagement.html](./2.GettingDeeper/MemoryManagement.html)

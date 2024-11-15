@@ -81,6 +81,7 @@ jobs:
               done
             fi
           done
+          cat README-HTML.adoc
           asciidoctor README-HTML.adoc
           git add .
           git config user.name "github-actions"

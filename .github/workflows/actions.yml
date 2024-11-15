@@ -66,23 +66,7 @@ jobs:
               cat README.md
               asciidoctor **/*.adoc
 
-              for html_file in $(find "$dir" -name "*.html" | sort); do
-                if [ -f "$html_file" ]; then
-                  if ! echo "$html_file" | grep -q "master.html" && ! echo "$html_file" | grep -q "master-raw.html"; then
-                    clean_file=$(basename "$html_file")
-                    echo "$clean_file" 
-                    if [["$clean_file" == *raw*]]; then
-                      first_value="${clean_file%%-*}"
-                      if [[ "$first_value" == *.* ]]; then
-                        after_dot="${first_value#*.}"
-                        echo "- [$after_dot]($html_file)" >> README-HTML.md
-                      else
-                        echo "- [$first_value]($html_file)" >> README-HTML.md
-                      fi
-                    fi
-                  fi
-                fi
-              done
+              
               echo "README-HTML.md"
               cat README-HTML.md
               for adoc_file in $(find $dir -maxdepth 1 -type f -name "*.adoc" | sort -u); do
@@ -94,9 +78,11 @@ jobs:
                       after_dot="${first_value#*.}"
                       asciidoctor-reducer "$dir/$clean_file" > "$dir/$first_value.adoc" 
                       echo "- [$after_dot]($dir/$first_value.adoc)" >> README.md
+                      echo "- [$after_dot]($dir/$first_value-raw.html)" >> README-HTML.md
                     else
                       asciidoctor-reducer "$dir/$clean_file" > "$dir/$first_value.adoc" 
                       echo "- [$first_value]($dir/$first_value.adoc)" >> README.md
+                      echo "- [$first_value]($dir/$first_value-raw.html)" >> README-HTML.md
                     fi
                   fi
                 fi

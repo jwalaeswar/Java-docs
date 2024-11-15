@@ -24,7 +24,7 @@ jobs:
       - name: Create HTMLs
         run: |
           find . -type f -name "*.html" -exec rm -f {} \;
-          
+          find . -type f -name "*.adoc" ! -name "*raw*" -exec rm {} +
           > README-HTML.md
           > README.md
           echo "# Contents" >> README-HTML.md
@@ -59,7 +59,8 @@ jobs:
                 if [ -f "$html_file" ]; then
                   if ! echo "$html_file" | grep -q "master.html" && ! echo "$html_file" | grep -q "master-raw.html"; then
                     clean_file=$(basename "$html_file")
-                    echo "### [$clean_file]($html_file)" >> README-HTML.md
+                    name_value="${*.%%clean_file%%-*}"
+                    echo "- [$name_value]($html_file)" >> README-HTML.md
                   fi
                 fi
               done
@@ -69,8 +70,9 @@ jobs:
                   if ! echo "$adoc_file" | grep -q "master.adoc" && ! echo "$adoc_file" | grep -q "master-raw.adoc"; then
                     clean_file=$(basename "$adoc_file")
                     first_value="${clean_file%%-*}"
+                    name_value="${*.%%clean_file%%-*}"
                     asciidoctor-reducer "$dir/$clean_file" > "$dir/$first_value.adoc" 
-                    echo "### [$first_value]($dir/$first_value.adoc)" >> README.md
+                    echo "- [$name_value]($dir/$first_value.adoc)" >> README.md
                   fi
                 fi
               done

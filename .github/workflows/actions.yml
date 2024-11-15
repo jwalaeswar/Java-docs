@@ -24,13 +24,13 @@ jobs:
       - name: Create HTMLs
         run: |
           find . -type f -name "*.html" -exec rm -f {} \;
-          find . -maxdepth 3 -type f -name "*.adoc" ! -name "*raw*" -exec rm {} +
           > README-HTML.md
           > README.md
           echo "# Contents" >> README-HTML.md
           echo "# Contents" >> README.md
 
           for dir in $(find . -maxdepth 2 -type f -name "*.adoc" -exec dirname {} \; | sort -u); do
+            find $dir -maxdepth 1 -type f -name "*.adoc" ! -name "*raw*" -exec rm {} +
             if [[ $(echo "$dir" | grep -o '/' | wc -l) -eq 1 ]]; then
               echo "Processing directory: $dir"
 

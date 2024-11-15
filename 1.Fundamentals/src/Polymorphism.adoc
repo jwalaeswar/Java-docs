@@ -1,0 +1,131 @@
+== Polymorphism in Java
+---
+Polymorphism in Java is a concept by which we can perform a single action in different ways. Polymorphism is derived from 2 Greek words: poly and morphs. The word "poly" means many and "morphs" means forms. So polymorphism means many forms.
+
+=== Advantages of Polymorphism
+*1. Code Reusability*
+
+Polymorphism allows methods in subclasses to override methods in their superclass, enabling code reuse and maintaining a consistent interface across related classes.
+
+
+*2. Flexibility and Extensibility*
+
+Polymorphism allows subclasses to provide their own implementations of methods defined in the superclass, making it easier to extend and customize behavior without modifying existing code.
+
+
+*3. Dynamic Method Invocation:*
+
+Polymorphism enables dynamic method invocation, where the method called is determined by the actual object type at runtime, providing flexibility in method dispatch.
+
+*4. Interface Implementation:*
+
+Interfaces in Java allow multiple classes to implement the same interface with their own implementations, facilitating polymorphic behavior and enabling objects of different classes to be treated interchangeably based on a common interface.
+
+*5. Method Overloading:*
+
+Polymorphism is also achieved through method overloading, where multiple methods with the same name but different parameter lists can be defined within a class or its subclasses, enhancing code readability and allowing flexibility in method invocation based on parameter types.
+
+*6. Reduced Code Complexity:*
+
+Polymorphism helps reduce code complexity by promoting a modular and hierarchical class structure, making it easier to understand, maintain, and extend large-scale software systems.
+
+=== Types of Polymorphism
+There are two types of polymorphism in Java:
+
+- compile-time polymorphism
+- runtime polymorphism.
+We can perform polymorphism in Java by method overloading and method overriding.
+
+==== Compile- Time Polymorphism in Java
+In Java, method overloading is used to achieve compile-time polymorphism. A class can have numerous methods with the same name but distinct parameter lists thanks to method overloading. The compiler uses the amount and kind of parameters provided to it during compilation to decide which method to call. This choice is made during compilation, which is why it's called "compile-time polymorphism."
+
+The methods in method overloading must have the same name but differ in the quantity or kind of parameters. Based on the inputs passed in during the method call, the compiler chooses the suitable overloaded method when a method is called. In the event of a perfect match, that procedure is used. If not, the compiler uses broadening to find the closest match depending on the parameter types.
+
+==== Runtime Polymorphism in Java
+*Runtime polymorphism* or *Dynamic Method Dispatch* is a process in which a call to an overridden method is resolved at runtime rather than compile-time.
+
+In this process, an overridden method is called through the reference variable of a superclass. The determination of the method to be called is based on the object being referred to by the reference variable.
+
+==== Upcasting
+If the reference variable of Parent class refers to the object of Child class, it is known as upcasting.
+[,java]
+----
+class A{}  
+class B extends A{}  
+A a = new B();//upcasting  
+----
+For upcasting, we can use the reference variable of class type or an interface type. For Example:
+[,java]
+----
+interface I{}  
+class A{}  
+class B extends A implements I{}  
+----
+
+Example of Java Runtime Polymorphism
+[,java]
+----
+class Bike{  
+  void run(){System.out.println("running");}  
+}  
+class Splendor extends Bike{  
+  void run(){System.out.println("running safely with 60km");}  
+  
+  public static void main(String args[]){  
+    Bike b = new Splendor();//upcasting  
+    b.run();  
+  }  
+}  
+----
+Output:
+[,]
+----
+running safely with 60km.
+----
+
+==== Static Binding and Dynamic Binding
+Connecting a method call to the method body is known as binding.
+
+There are two types of binding
+
+- Static Binding (also known as Early Binding).
+- Dynamic Binding (also known as Late Binding).
+
+*static binding*
+When type of the object is determined at compiled time(by the compiler), it is known as static binding.
+
+If there is any private, final or static method in a class, there is static binding.
+
+[,java]
+----
+class Dog{  
+ private void eat(){System.out.println("dog is eating...");}  
+  
+ public static void main(String args[]){  
+  Dog d1=new Dog();  
+  d1.eat();  
+ }  
+}
+----
+
+*Dynamic binding*
+
+When type of the object is determined at run-time, it is known as dynamic binding.
+
+[,java]
+----
+class Animal{  
+ void eat(){System.out.println("animal is eating...");}  
+}  
+  
+class Dog extends Animal{  
+ void eat(){System.out.println("dog is eating...");}  
+  
+ public static void main(String args[]){  
+  Animal a=new Dog();  
+  a.eat();  
+ }  
+}  
+----
+
+In the above example object type cannot be determined by the compiler, because the instance of Dog is also an instance of Animal.So compiler doesn't know its type, only its base type.
